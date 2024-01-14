@@ -1,0 +1,136 @@
+[
+  {
+    "gameName": "Ayato",
+    "tagLine": "11235",
+    "summonerId": "Esssl3ai9Cyz-n3-QkcXtgUrkG7eR2rWOYcbbymH2wptaz8",
+    "puuid": "eL5FT_-iar7RRvNBDsj5arXPUTWdkfrJTFhReKgDHNBizr37dHJf9ruCdfrJZmWpamye3L-W67aShw",
+    "name": "G5 Easy",
+    "profileIconId": 5641,
+    "summonerLevel": 397,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": null,
+      "440": {
+        "leagueId": "28fde316-4e41-4efe-8408-984ac7880861",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "PLATINUM",
+        "rank": "II",
+        "leaguePoints": 35,
+        "wins": 2,
+        "losses": 3,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      }
+    }
+  },
+  {
+    "gameName": "WeingottBachus",
+    "tagLine": "EUW",
+    "summonerId": "4E83JFYB1u3IXauxJEsBTuVef3MdiJhGCjoeI1Oum0sTVQk0",
+    "puuid": "DD9JnerCOP2Ag49m3HWlgcWuiPYpGp9Mpldd5UPuo57VNKguh3_eLySKBQ90uP8hkJlFBOP7x24CDQ",
+    "name": "WeingottBachus",
+    "profileIconId": 6316,
+    "summonerLevel": 585,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": null,
+      "440": {
+        "leagueId": "22d73de8-d912-4b18-9058-af7767ef86a7",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "EMERALD",
+        "rank": "II",
+        "leaguePoints": 0,
+        "wins": 2,
+        "losses": 4,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      }
+    }
+  },
+  {
+    "gameName": "ique",
+    "tagLine": "ique1",
+    "summonerId": "OToOysaeJ_zY6ZnhCHLwBRPxGcpKkbvEOkM7ia2Y4KWjmmxQ",
+    "puuid": "xLoyhMEWCKwyxLY9-aovS3WxuFwaZk3MAwCWeDV0lhE-Av_NiV0t-_Z4PYdY8BV-aYgDA9wod8xX2Q",
+    "name": "kiting femboys",
+    "profileIconId": 5089,
+    "summonerLevel": 612,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": null,
+      "440": null
+    }
+  },
+  {
+    "gameName": "Ethereal Peace",
+    "tagLine": "EUW",
+    "summonerId": "9mMuO06QQxEyFY-pmoxQgEidD-_vBgX_TluPPUKBfG5Vfkw",
+    "puuid": "kI861zvO4_5X6gfpbcYTqSh6N4miWNffv6qqS29PulV3nWy9wOchnO2lfRMDKydxzwWzUMh2MWGAIg",
+    "name": "Ethereal Peace",
+    "profileIconId": 6317,
+    "summonerLevel": 468,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": null,
+      "440": null
+    }
+  },
+  {
+    "gameName": "bubble",
+    "tagLine": "1608",
+    "summonerId": "wCslB5tO7mJZt_nWQPy-tf-H_0Wglz_q4d4K76L5EPHJs_XvdqzdSLGeZg",
+    "puuid": "MujvQi2r1ukKYB0We1WQj1g9zuDF8L3mX6y5xGl59QoUQCvuuT4OFahVIuH8Bbq-6jgQ8gHjKuJ10g",
+    "name": "PrinzessinBubbIe",
+    "profileIconId": 4555,
+    "summonerLevel": 155,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": null,
+      "440": null
+    }
+  },
+  {
+    "gameName": "Killer Fisch",
+    "tagLine": "1111",
+    "summonerId": "80Eyjcf06d_aZSnrOXR85GWJKR7K_9m63XYhZVm-MBTlunhC",
+    "puuid": "8EnGr9cgFf5vxShBrwLpToRH_202wXcDwSsE6X_iXkpaQR0o4uSXHVBXKGRlp-BSvYrBwMlHtEXO7g",
+    "name": "Zukyami",
+    "profileIconId": 1637,
+    "summonerLevel": 405,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": {
+        "leagueId": "9cc67982-0b83-4035-9d1b-fb0fb853474f",
+        "queueType": "RANKED_SOLO_5x5",
+        "tier": "GOLD",
+        "rank": "II",
+        "leaguePoints": 5,
+        "wins": 3,
+        "losses": 5,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      },
+      "440": null
+    }
+  },
+  {
+    "gameName": "asuki",
+    "tagLine": "111",
+    "summonerId": "YIMyqMasmiK4p9tchVhwbDqM7JF3qmjjet-XxPs9tPEKnoya",
+    "puuid": "DWNRhzEB4zLMRxqWs_1iwKexqM2YsU0E7nMtca0vE6c4dxzIJydkZbGSOtZmOUWCpqdxi7MJC8Wg2g",
+    "name": "GARENGAREN69",
+    "profileIconId": 5955,
+    "summonerLevel": 593,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": null,
+      "440": null
+    }
+  }
+]
