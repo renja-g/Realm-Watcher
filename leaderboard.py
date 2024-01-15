@@ -11,11 +11,18 @@ tiers = {
     "SILVER": 2,
     "GOLD": 3,
     "PLATINUM": 4,
-    "EMERALD": 4,
-    "DIAMOND": 5,
-    "MASTER": 6,
-    "GRANDMASTER": 7,
-    "CHALLENGER": 8,
+    "EMERALD": 5,
+    "DIAMOND": 6,
+    "MASTER": 7,
+    "GRANDMASTER": 8,
+    "CHALLENGER": 9,
+}
+
+division = {
+    "IV": 0,
+    "III": 1,
+    "II": 2,
+    "I": 3,
 }
 
 
@@ -34,13 +41,14 @@ def sort_summoners(summoners_list: list[dict], league: str) -> list[dict]:
         if summoner["leagueEntries"][league] is not None:
             summoners.append(summoner)
     
-    # sort by tier
-    summoners = sorted(summoners, key=lambda summoner: tiers[summoner["leagueEntries"][league]["tier"]])
-    # sort by division
-    summoners = sorted(summoners, key=lambda summoner: summoner["leagueEntries"][league]["rank"])
-    # sort by league points
-    summoners = sorted(summoners, key=lambda summoner: summoner["leagueEntries"][league]["leaguePoints"])
+    # sort the summoners
+    def sort_key(summoner):
+        tier = summoner["leagueEntries"][league]["tier"]
+        rank = summoner["leagueEntries"][league]["rank"]
+        league_points = summoner["leagueEntries"][league]["leaguePoints"]
+        return (tiers.get(tier, -1), division.get(rank, -1), league_points)
 
+    summoners = sorted(summoners, key=sort_key, reverse=True)
     return summoners
 
 

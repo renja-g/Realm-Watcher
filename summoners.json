@@ -15,9 +15,9 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
         "rank": "II",
-        "leaguePoints": 35,
+        "leaguePoints": 13,
         "wins": 2,
-        "losses": 3,
+        "losses": 4,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
@@ -40,10 +40,10 @@
         "leagueId": "22d73de8-d912-4b18-9058-af7767ef86a7",
         "queueType": "RANKED_FLEX_SR",
         "tier": "EMERALD",
-        "rank": "II",
-        "leaguePoints": 0,
+        "rank": "III",
+        "leaguePoints": 75,
         "wins": 2,
-        "losses": 4,
+        "losses": 5,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
@@ -62,7 +62,19 @@
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
-      "440": null
+      "440": {
+        "leagueId": "b4c995ae-95aa-4f23-992c-26fb22e341d4",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "PLATINUM",
+        "rank": "III",
+        "leaguePoints": 13,
+        "wins": 2,
+        "losses": 3,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      }
     }
   },
   {
@@ -89,7 +101,19 @@
     "summonerLevel": 155,
     "platform": "euw1",
     "leagueEntries": {
-      "420": null,
+      "420": {
+        "leagueId": "5b13108e-4bd4-42b8-af52-13eb0ad26b87",
+        "queueType": "RANKED_SOLO_5x5",
+        "tier": "GOLD",
+        "rank": "I",
+        "leaguePoints": 25,
+        "wins": 4,
+        "losses": 2,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      },
       "440": null
     }
   },
@@ -108,9 +132,9 @@
         "queueType": "RANKED_SOLO_5x5",
         "tier": "GOLD",
         "rank": "II",
-        "leaguePoints": 5,
-        "wins": 3,
-        "losses": 5,
+        "leaguePoints": 18,
+        "wins": 4,
+        "losses": 7,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
