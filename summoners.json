@@ -15,9 +15,9 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
         "rank": "II",
-        "leaguePoints": 13,
-        "wins": 2,
-        "losses": 4,
+        "leaguePoints": 53,
+        "wins": 4,
+        "losses": 5,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
@@ -40,10 +40,10 @@
         "leagueId": "22d73de8-d912-4b18-9058-af7767ef86a7",
         "queueType": "RANKED_FLEX_SR",
         "tier": "EMERALD",
-        "rank": "III",
-        "leaguePoints": 75,
-        "wins": 2,
-        "losses": 5,
+        "rank": "II",
+        "leaguePoints": 3,
+        "wins": 4,
+        "losses": 6,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
@@ -67,8 +67,8 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
         "rank": "III",
-        "leaguePoints": 13,
-        "wins": 2,
+        "leaguePoints": 41,
+        "wins": 3,
         "losses": 3,
         "veteran": false,
         "inactive": false,
@@ -105,16 +105,28 @@
         "leagueId": "4bd9229e-3d4c-480f-a033-5b098b9e2dc1",
         "queueType": "RANKED_SOLO_5x5",
         "tier": "PLATINUM",
-        "rank": "IV",
-        "leaguePoints": 50,
-        "wins": 9,
+        "rank": "III",
+        "leaguePoints": 21,
+        "wins": 11,
         "losses": 4,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
         "hotStreak": false
       },
-      "440": null
+      "440": {
+        "leagueId": "f0988def-ee70-4fe5-9b2d-ce5db88a80ae",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "GOLD",
+        "rank": "III",
+        "leaguePoints": 56,
+        "wins": 2,
+        "losses": 5,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      }
     }
   },
   {
@@ -140,7 +152,19 @@
         "freshBlood": true,
         "hotStreak": false
       },
-      "440": null
+      "440": {
+        "leagueId": "b4c995ae-95aa-4f23-992c-26fb22e341d4",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "PLATINUM",
+        "rank": "III",
+        "leaguePoints": 73,
+        "wins": 2,
+        "losses": 4,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      }
     }
   },
   {
@@ -154,6 +178,32 @@
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
+      "440": null
+    }
+  },
+  {
+    "gameName": "MAiNFRAME 33",
+    "tagLine": "EUW",
+    "summonerId": "tFXw2ovckT8Yes_cHiDfAf9pz7spBW0ywNnZmyiuBBVL1j8FkDOQp9uvwg",
+    "puuid": "idk-DdjpCNU1F6J2zNr9NpbI_xmxWYBIhdXJopSznF7xt7-Uu8DXCXD_ov-fvbAQrtSNhpDdDy35zA",
+    "name": "MAiNFRAME 33",
+    "profileIconId": 22,
+    "summonerLevel": 74,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": {
+        "leagueId": "c2bc456c-7cc4-4469-ac38-da975b84c4e1",
+        "queueType": "RANKED_SOLO_5x5",
+        "tier": "EMERALD",
+        "rank": "IV",
+        "leaguePoints": 1,
+        "wins": 7,
+        "losses": 2,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      },
       "440": null
     }
   }

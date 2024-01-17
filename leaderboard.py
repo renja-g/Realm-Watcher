@@ -2,6 +2,10 @@ import orjson
 import os
 import sys
 
+from rich.console import Console
+from rich.table import Table
+
+
 # set cwd to the directory of this file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,13 +46,16 @@ def sort_summoners(summoners_list: list[dict], league: str) -> list[dict]:
             summoners.append(summoner)
     
     # sort the summoners
-    def sort_key(summoner):
-        tier = summoner["leagueEntries"][league]["tier"]
-        rank = summoner["leagueEntries"][league]["rank"]
-        league_points = summoner["leagueEntries"][league]["leaguePoints"]
-        return (tiers.get(tier, -1), division.get(rank, -1), league_points)
-
-    summoners = sorted(summoners, key=sort_key, reverse=True)
+    # 1. tagLine
+    # 2. gameName
+    # 3. leaguePoints
+    # 4. rank
+    # 5. tier
+    summoners.sort(key=lambda summoner: summoner["tagLine"])
+    summoners.sort(key=lambda summoner: summoner["gameName"])
+    summoners.sort(key=lambda summoner: summoner["leagueEntries"][league]["leaguePoints"], reverse=True)
+    summoners.sort(key=lambda summoner: division[summoner["leagueEntries"][league]["rank"]], reverse=True)
+    summoners.sort(key=lambda summoner: tiers[summoner["leagueEntries"][league]["tier"]], reverse=True)
     return summoners
 
 
@@ -71,9 +78,29 @@ def main():
         league = "440"
 
     rank = 1
+    # Print the leaderboard
+    # Rank | gameName#tagLine | tier | Division(rank) | LP | Wins | Losses | Winrate
+    console = Console()
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("#")
+    table.add_column("Summoner")
+    table.add_column("Rank")
+    table.add_column("LP")
+    table.add_column("Games")
+    table.add_column("Winrate")
     for summoner in summoners:
-        print(f"{rank}. {summoner['name']} {summoner['leagueEntries'][league]['tier']} {summoner['leagueEntries'][league]['rank']} {summoner['leagueEntries'][league]['leaguePoints']}")
+        league_entry = summoner["leagueEntries"][league]
+        table.add_row(
+            str(rank),
+            f"{summoner['gameName']}#{summoner['tagLine']}",
+            f"{league_entry['tier']} {league_entry['rank']}",
+            str(league_entry["leaguePoints"]),
+            str(league_entry["wins"] + league_entry["losses"]),
+            f"{round(league_entry['wins'] / (league_entry['wins'] + league_entry['losses']) * 100, 2)}%"
+        )
         rank += 1
+    console.print(table)
+
 
 if __name__ == "__main__":
     main()

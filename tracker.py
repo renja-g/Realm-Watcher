@@ -20,40 +20,7 @@ load_dotenv()
 RIOT_API_KEY = os.getenv("RIOT_API_KEY")
 
 
-# JSON schema:
-"""
-[
-    {
-        "gameName": "Quitlle",
-        "tagLine": "EUW",
-        "summonerId": "sF0ITryjqgBIbfvdGBlTG692Nio4whOG2Qc33dnX1HwLXXyL",
-        "puuid": "jdPcD65lNVIrB_a3WeHrikbSV1IZrt5I_5AspE2eXjRInwpMaKvGddcmwLXxClgailVGV2A-hYa4dg",
-        "name": "Quitlle",
-        "profileIconId": 6468,
-        "summonerLevel": 196,
-        "platform": "euw1",
-        "leagueEntries": {
-        "420": {
-            "leagueId": "5df93504-3646-42ec-b4f0-67b539e86cc2",
-            "queueType": "RANKED_SOLO_5x5",
-            "tier": "EMERALD",
-            "rank": "II",
-            "leaguePoints": 88,
-            "wins": 9,
-            "losses": 9,
-            "veteran": false,
-            "inactive": false,
-            "freshBlood": true,
-            "hotStreak": false
-        },
-        "440": null
-        }
-    }
-]
-"""
-
-
-platform_to_regions = {
+PLATFORM_TO_REGIONS = {
     "br1": "americas",
     "eun1": "europe",
     "euw1": "europe",
@@ -71,10 +38,6 @@ platform_to_regions = {
     "tw2": "sea",
     "vn2": "sea",
 }
-
-def platform_to_region(platform: str) -> str:
-    '''Return the region correspondent to a given platform'''
-    return platform_to_regions[platform]
 
 
 async def get_summoners():
@@ -128,7 +91,7 @@ async def update_summoner(summoner: dict, client: RiotAPIClient) -> dict:
     summoner.update(api_summoner)
     
     api_summoner_account = await client.get_account_v1_by_puuid(
-        region=platform_to_region(summoner["platform"]),
+        region=PLATFORM_TO_REGIONS[summoner["platform"]],
         puuid=summoner["puuid"],
     )
     api_summoner_account.pop("puuid")
