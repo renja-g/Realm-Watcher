@@ -106,17 +106,25 @@ async def update_summoner_details(summoner: Dict, client: RiotAPIClient) -> Dict
         logger.info(f"Summoner {summoner['gameName']}#{summoner['tagLine']} details updated.")
     return summoner
 
+async def update_summoner(summoner: Dict, client: RiotAPIClient) -> None:
+    """Update details for a summoner."""
+    league_entries = await get_league(client, summoner)
+    summoner = await update_summoner_league(summoner, league_entries)
+    summoner = await update_summoner_details(summoner, client)
+    return summoner
 
-async def update_summoners(summoners: List[Dict], client: RiotAPIClient) -> None:
+
+async def update_all_summoners(summoners: List[Dict], client: RiotAPIClient) -> None:
     """Update details for all summoners."""
     if summoners is None:
         logger.error("No summoners to update.")
         return
-    for summoner in summoners:
-        league_entries = await get_league(client, summoner)
-        summoner = await update_summoner_league(summoner, league_entries)
-        summoner = await update_summoner_details(summoner, client)
     
+    tasks = []
+    for summoner in summoners:
+        tasks.append(update_summoner(summoner, client))
+    summoners = await asyncio.gather(*tasks)
+
     try:
         with open("summoners.json", "w") as f:
             f.write(orjson.dumps(summoners, option=orjson.OPT_INDENT_2).decode())
@@ -138,7 +146,7 @@ async def main() -> None:
                 ]
             ) as client:
             summoners = await get_summoners()
-            await update_summoners(summoners, client)
+            await update_all_summoners(summoners, client)
             logger.info("Everything up to date.")
             await asyncio.sleep(10)
 
