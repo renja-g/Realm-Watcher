@@ -139,7 +139,7 @@ async def main() -> None:
             ) as client:
             summoners = await get_summoners()
             await update_summoners(summoners, client)
-            logger.info("Everything updated.")
+            logger.info("Everything up to date.")
             await asyncio.sleep(10)
 
 
