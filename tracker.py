@@ -6,6 +6,7 @@ from typing import Literal
 
 from dotenv import load_dotenv
 import orjson
+from loguru import logger
 
 from pulsefire.clients import RiotAPIClient
 from pulsefire.ratelimiters import RiotAPIRateLimiter
@@ -15,6 +16,7 @@ from pulsefire.middlewares import (
     rate_limiter_middleware,
 )
 
+logger.info("Starting tracker...")
 
 load_dotenv()
 RIOT_API_KEY = os.getenv("RIOT_API_KEY")
@@ -38,6 +40,10 @@ PLATFORM_TO_REGIONS = {
     "tw2": "sea",
     "vn2": "sea",
 }
+
+
+def has_summoner_changed(old_data: dict, new_data: dict) -> bool:
+    return old_data != new_data
 
 
 async def get_summoners():
@@ -74,12 +80,16 @@ async def update_summoner_league(summoner: dict, league_entries: dict) -> dict:
     """
     Update the league of a summoner.
     """
+    old_league_entries = summoner.get("leagueEntries", {})
     summoner["leagueEntries"] = league_entries
+    if has_summoner_changed(old_league_entries, league_entries):
+        logger.info(f"Summoner {summoner['gameName']}#{summoner['tagLine']} league entries updated.")
     return summoner
 
 
 async def update_summoner(summoner: dict, client: RiotAPIClient) -> dict:
     """Updates the icon, level name etc"""
+    old_summoner_data = summoner.copy()
     api_summoner = await client.get_lol_summoner_v4_by_puuid(
         region=summoner["platform"],
         puuid=summoner["puuid"],
@@ -96,6 +106,9 @@ async def update_summoner(summoner: dict, client: RiotAPIClient) -> dict:
     )
     api_summoner_account.pop("puuid")
     summoner.update(api_summoner_account)
+
+    if has_summoner_changed(old_summoner_data, summoner):
+        logger.info(f"Summoner {summoner['gameName']}#{summoner['tagLine']} details updated.")
     return summoner
 
 async def update_summoners(summoners: list[dict], client: RiotAPIClient) -> None:
@@ -124,7 +137,7 @@ async def main() -> None:
             ) as client:
             summoners = await get_summoners()
             await update_summoners(summoners, client)
-            print("Updated summoners")
+            logger.info("Everything updated.")
             await asyncio.sleep(10)
 
 if __name__ == "__main__":
