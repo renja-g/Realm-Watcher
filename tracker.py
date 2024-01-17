@@ -148,7 +148,7 @@ async def main() -> None:
             summoners = await get_summoners()
             await update_all_summoners(summoners, client)
             logger.info("Everything up to date.")
-            await asyncio.sleep(10)
+            await asyncio.sleep(20)
 
 
 if __name__ == "__main__":

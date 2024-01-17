@@ -6,7 +6,7 @@
     "puuid": "eL5FT_-iar7RRvNBDsj5arXPUTWdkfrJTFhReKgDHNBizr37dHJf9ruCdfrJZmWpamye3L-W67aShw",
     "name": "G5 Easy",
     "profileIconId": 5641,
-    "summonerLevel": 397,
+    "summonerLevel": 399,
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
@@ -15,12 +15,12 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
         "rank": "II",
-        "leaguePoints": 53,
-        "wins": 4,
+        "leaguePoints": 84,
+        "wins": 5,
         "losses": 5,
         "veteran": false,
         "inactive": false,
-        "freshBlood": true,
+        "freshBlood": false,
         "hotStreak": false
       }
     }
@@ -32,7 +32,7 @@
     "puuid": "DD9JnerCOP2Ag49m3HWlgcWuiPYpGp9Mpldd5UPuo57VNKguh3_eLySKBQ90uP8hkJlFBOP7x24CDQ",
     "name": "WeingottBachus",
     "profileIconId": 6316,
-    "summonerLevel": 585,
+    "summonerLevel": 586,
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
@@ -46,7 +46,7 @@
         "losses": 6,
         "veteran": false,
         "inactive": false,
-        "freshBlood": true,
+        "freshBlood": false,
         "hotStreak": false
       }
     }
@@ -58,7 +58,7 @@
     "puuid": "xLoyhMEWCKwyxLY9-aovS3WxuFwaZk3MAwCWeDV0lhE-Av_NiV0t-_Z4PYdY8BV-aYgDA9wod8xX2Q",
     "name": "kiting femboys",
     "profileIconId": 5089,
-    "summonerLevel": 612,
+    "summonerLevel": 613,
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
@@ -67,12 +67,12 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
         "rank": "III",
-        "leaguePoints": 41,
-        "wins": 3,
+        "leaguePoints": 66,
+        "wins": 4,
         "losses": 3,
         "veteran": false,
         "inactive": false,
-        "freshBlood": true,
+        "freshBlood": false,
         "hotStreak": false
       }
     }
@@ -97,34 +97,34 @@
     "summonerId": "wCslB5tO7mJZt_nWQPy-tf-H_0Wglz_q4d4K76L5EPHJs_XvdqzdSLGeZg",
     "puuid": "MujvQi2r1ukKYB0We1WQj1g9zuDF8L3mX6y5xGl59QoUQCvuuT4OFahVIuH8Bbq-6jgQ8gHjKuJ10g",
     "name": "PrinzessinBubbIe",
-    "profileIconId": 4555,
-    "summonerLevel": 155,
+    "profileIconId": 6425,
+    "summonerLevel": 157,
     "platform": "euw1",
     "leagueEntries": {
       "420": {
         "leagueId": "4bd9229e-3d4c-480f-a033-5b098b9e2dc1",
         "queueType": "RANKED_SOLO_5x5",
         "tier": "PLATINUM",
-        "rank": "III",
-        "leaguePoints": 21,
-        "wins": 11,
+        "rank": "II",
+        "leaguePoints": 27,
+        "wins": 14,
         "losses": 4,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
-        "hotStreak": false
+        "hotStreak": true
       },
       "440": {
         "leagueId": "f0988def-ee70-4fe5-9b2d-ce5db88a80ae",
         "queueType": "RANKED_FLEX_SR",
         "tier": "GOLD",
         "rank": "III",
-        "leaguePoints": 56,
-        "wins": 2,
+        "leaguePoints": 82,
+        "wins": 3,
         "losses": 5,
         "veteran": false,
         "inactive": false,
-        "freshBlood": true,
+        "freshBlood": false,
         "hotStreak": false
       }
     }
@@ -136,7 +136,7 @@
     "puuid": "8EnGr9cgFf5vxShBrwLpToRH_202wXcDwSsE6X_iXkpaQR0o4uSXHVBXKGRlp-BSvYrBwMlHtEXO7g",
     "name": "Zukyami",
     "profileIconId": 1637,
-    "summonerLevel": 405,
+    "summonerLevel": 406,
     "platform": "euw1",
     "leagueEntries": {
       "420": {
@@ -162,7 +162,7 @@
         "losses": 4,
         "veteran": false,
         "inactive": false,
-        "freshBlood": true,
+        "freshBlood": false,
         "hotStreak": false
       }
     }
@@ -174,7 +174,7 @@
     "puuid": "DWNRhzEB4zLMRxqWs_1iwKexqM2YsU0E7nMtca0vE6c4dxzIJydkZbGSOtZmOUWCpqdxi7MJC8Wg2g",
     "name": "GARENGAREN69",
     "profileIconId": 5955,
-    "summonerLevel": 593,
+    "summonerLevel": 594,
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
@@ -187,8 +187,8 @@
     "summonerId": "tFXw2ovckT8Yes_cHiDfAf9pz7spBW0ywNnZmyiuBBVL1j8FkDOQp9uvwg",
     "puuid": "idk-DdjpCNU1F6J2zNr9NpbI_xmxWYBIhdXJopSznF7xt7-Uu8DXCXD_ov-fvbAQrtSNhpDdDy35zA",
     "name": "MAiNFRAME 33",
-    "profileIconId": 22,
-    "summonerLevel": 74,
+    "profileIconId": 6224,
+    "summonerLevel": 75,
     "platform": "euw1",
     "leagueEntries": {
       "420": {
@@ -196,13 +196,13 @@
         "queueType": "RANKED_SOLO_5x5",
         "tier": "EMERALD",
         "rank": "IV",
-        "leaguePoints": 1,
-        "wins": 7,
+        "leaguePoints": 76,
+        "wins": 10,
         "losses": 2,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
-        "hotStreak": false
+        "hotStreak": true
       },
       "440": null
     }
