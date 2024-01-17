@@ -1,67 +1,58 @@
-# A tracker that keeps the summoners.json file up to date
 import os
 import asyncio
-import sys
-from typing import Literal
+from typing import Optional, Dict, List
 
+# External libraries
 from dotenv import load_dotenv
 import orjson
 from loguru import logger
 
+# pulsefire modules
 from pulsefire.clients import RiotAPIClient
 from pulsefire.ratelimiters import RiotAPIRateLimiter
-from pulsefire.middlewares import (
-    json_response_middleware,
-    http_error_middleware,
-    rate_limiter_middleware,
-)
+from pulsefire.middlewares import json_response_middleware, http_error_middleware, rate_limiter_middleware
 
-logger.info("Starting tracker...")
 
+# Load environment variables
 load_dotenv()
 RIOT_API_KEY = os.getenv("RIOT_API_KEY")
 
 
+# Mapping of platforms to their respective regions
 PLATFORM_TO_REGIONS = {
-    "br1": "americas",
-    "eun1": "europe",
-    "euw1": "europe",
-    "jp1": "asia",
-    "kr": "asia",
-    "la1": "americas",
-    "la2": "americas",
-    "na1": "americas",
-    "oc1": "sea",
-    "tr1": "europe",
-    "ru": "europe",
-    "ph2": "sea",
-    "sg2": "sea",
-    "th2": "sea",
-    "tw2": "sea",
-    "vn2": "sea",
+    "br1": "americas", "eun1": "europe", "euw1": "europe", "jp1": "asia", "kr": "asia",
+    "la1": "americas", "la2": "americas", "na1": "americas", "oc1": "sea", "tr1": "europe",
+    "ru": "europe", "ph2": "sea", "sg2": "sea", "th2": "sea", "tw2": "sea", "vn2": "sea",
 }
 
 
-def has_summoner_changed(old_data: dict, new_data: dict) -> bool:
+logger.info("Starting tracker...")
+
+
+# Function definitions
+def has_summoner_changed(old_data: Dict, new_data: Dict) -> bool:
+    """Check if the summoner's data has changed."""
     return old_data != new_data
 
 
-async def get_summoners():
-    with open("summoners.json", "r") as f:
-        summoners = orjson.loads(f.read())
-    return summoners
+async def get_summoners() -> Optional[List[Dict]]:
+    """Read and load summoner data from a JSON file."""
+    try:
+        with open("summoners.json", "r") as f:
+            summoners = orjson.loads(f.read())
+        return summoners
+    except Exception as e:
+        logger.error(f"Failed to read summoners.json: {e}")
+        return None
 
 
-async def get_league(client: RiotAPIClient, summoner: dict) -> dict | None:
-    """Get the leagues of a summoner"""
+async def get_league(client: RiotAPIClient, summoner: Dict) -> Dict[str, Optional[Dict]]:
+    """Get the league details for a summoner."""
     api_league_entries = await client.get_lol_league_v4_entries_by_summoner(
         region=summoner["platform"],
         summoner_id=summoner["summonerId"],
     )
-    league_entries ={
-        "420": None,
-        "440": None,
-    }
+    league_entries = {"420": None, "440": None}
     if not api_league_entries:
         return league_entries
     for entry in api_league_entries:
@@ -76,10 +67,8 @@ async def get_league(client: RiotAPIClient, summoner: dict) -> dict | None:
     return league_entries
 
 
-async def update_summoner_league(summoner: dict, league_entries: dict) -> dict:
-    """
-    Update the league of a summoner.
-    """
+async def update_summoner_league(summoner: Dict, league_entries: Dict) -> Dict:
+    """Update the league details of a summoner."""
     old_league_entries = summoner.get("leagueEntries", {})
     summoner["leagueEntries"] = league_entries
     if has_summoner_changed(old_league_entries, league_entries):
@@ -87,43 +76,56 @@ async def update_summoner_league(summoner: dict, league_entries: dict) -> dict:
     return summoner
 
 
-async def update_summoner(summoner: dict, client: RiotAPIClient) -> dict:
-    """Updates the icon, level name etc"""
+async def update_summoner_details(summoner: Dict, client: RiotAPIClient) -> Dict:
+    """Fetch and update the summoner's details from the API."""
     old_summoner_data = summoner.copy()
-    api_summoner = await client.get_lol_summoner_v4_by_puuid(
-        region=summoner["platform"],
-        puuid=summoner["puuid"],
-    )
-    api_summoner.pop("revisionDate")
-    api_summoner.pop("accountId")
-    api_summoner.pop("id")
-    api_summoner.pop("puuid")
-    summoner.update(api_summoner)
-    
-    api_summoner_account = await client.get_account_v1_by_puuid(
-        region=PLATFORM_TO_REGIONS[summoner["platform"]],
-        puuid=summoner["puuid"],
-    )
-    api_summoner_account.pop("puuid")
-    summoner.update(api_summoner_account)
+    try:
+        api_summoner = await client.get_lol_summoner_v4_by_puuid(
+            region=summoner["platform"],
+            puuid=summoner["puuid"],
+        )
+        api_summoner.pop("revisionDate")
+        api_summoner.pop("accountId")
+        api_summoner.pop("id")
+        api_summoner.pop("puuid")
+        summoner.update(api_summoner)
+    except Exception as e:
+        logger.error(f"Failed to get summoner {summoner['gameName']}#{summoner['tagLine']} details: {e}")
+
+    try:    
+        api_summoner_account = await client.get_account_v1_by_puuid(
+            region=PLATFORM_TO_REGIONS[summoner["platform"]],
+            puuid=summoner["puuid"],
+        )
+        api_summoner_account.pop("puuid")
+        summoner.update(api_summoner_account)
+    except Exception as e:
+        logger.error(f"Failed to get summoner {summoner['gameName']}#{summoner['tagLine']} account details: {e}")
 
     if has_summoner_changed(old_summoner_data, summoner):
         logger.info(f"Summoner {summoner['gameName']}#{summoner['tagLine']} details updated.")
     return summoner
 
-async def update_summoners(summoners: list[dict], client: RiotAPIClient) -> None:
-    """
-    Update the league of all summoners.
-    """
+
+async def update_summoners(summoners: List[Dict], client: RiotAPIClient) -> None:
+    """Update details for all summoners."""
+    if summoners is None:
+        logger.error("No summoners to update.")
+        return
     for summoner in summoners:
         league_entries = await get_league(client, summoner)
         summoner = await update_summoner_league(summoner, league_entries)
+        summoner = await update_summoner_details(summoner, client)
     
-    with open("summoners.json", "w") as f:
-        f.write(orjson.dumps(summoners, option=orjson.OPT_INDENT_2).decode())
+    try:
+        with open("summoners.json", "w") as f:
+            f.write(orjson.dumps(summoners, option=orjson.OPT_INDENT_2).decode())
+    except Exception as e:
+        logger.error(f"Failed to write summoners.json: {e}")
 
 
 async def main() -> None:
+    """Main function to orchestrate the updating of summoners."""
     while True:
         async with RiotAPIClient(
                 default_headers={"X-Riot-Token": RIOT_API_KEY},
@@ -139,6 +141,7 @@ async def main() -> None:
             await update_summoners(summoners, client)
             logger.info("Everything updated.")
             await asyncio.sleep(10)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
