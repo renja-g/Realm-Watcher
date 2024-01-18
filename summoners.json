@@ -14,14 +14,14 @@
         "leagueId": "28fde316-4e41-4efe-8408-984ac7880861",
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
-        "rank": "II",
-        "leaguePoints": 84,
-        "wins": 5,
+        "rank": "I",
+        "leaguePoints": 47,
+        "wins": 7,
         "losses": 5,
         "veteran": false,
         "inactive": false,
         "freshBlood": false,
-        "hotStreak": false
+        "hotStreak": true
       }
     }
   },
@@ -32,7 +32,7 @@
     "puuid": "DD9JnerCOP2Ag49m3HWlgcWuiPYpGp9Mpldd5UPuo57VNKguh3_eLySKBQ90uP8hkJlFBOP7x24CDQ",
     "name": "WeingottBachus",
     "profileIconId": 6316,
-    "summonerLevel": 586,
+    "summonerLevel": 587,
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
@@ -41,9 +41,9 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "EMERALD",
         "rank": "II",
-        "leaguePoints": 3,
-        "wins": 4,
-        "losses": 6,
+        "leaguePoints": 44,
+        "wins": 6,
+        "losses": 7,
         "veteran": false,
         "inactive": false,
         "freshBlood": false,
@@ -58,7 +58,7 @@
     "puuid": "xLoyhMEWCKwyxLY9-aovS3WxuFwaZk3MAwCWeDV0lhE-Av_NiV0t-_Z4PYdY8BV-aYgDA9wod8xX2Q",
     "name": "kiting femboys",
     "profileIconId": 5089,
-    "summonerLevel": 613,
+    "summonerLevel": 614,
     "platform": "euw1",
     "leagueEntries": {
       "420": null,
@@ -67,9 +67,9 @@
         "queueType": "RANKED_FLEX_SR",
         "tier": "PLATINUM",
         "rank": "III",
-        "leaguePoints": 66,
-        "wins": 4,
-        "losses": 3,
+        "leaguePoints": 98,
+        "wins": 6,
+        "losses": 4,
         "veteran": false,
         "inactive": false,
         "freshBlood": false,
@@ -98,30 +98,30 @@
     "puuid": "MujvQi2r1ukKYB0We1WQj1g9zuDF8L3mX6y5xGl59QoUQCvuuT4OFahVIuH8Bbq-6jgQ8gHjKuJ10g",
     "name": "PrinzessinBubbIe",
     "profileIconId": 6425,
-    "summonerLevel": 157,
+    "summonerLevel": 158,
     "platform": "euw1",
     "leagueEntries": {
       "420": {
         "leagueId": "4bd9229e-3d4c-480f-a033-5b098b9e2dc1",
         "queueType": "RANKED_SOLO_5x5",
         "tier": "PLATINUM",
-        "rank": "II",
-        "leaguePoints": 27,
-        "wins": 14,
-        "losses": 4,
+        "rank": "I",
+        "leaguePoints": 55,
+        "wins": 18,
+        "losses": 5,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
-        "hotStreak": true
+        "hotStreak": false
       },
       "440": {
         "leagueId": "f0988def-ee70-4fe5-9b2d-ce5db88a80ae",
         "queueType": "RANKED_FLEX_SR",
         "tier": "GOLD",
-        "rank": "III",
-        "leaguePoints": 82,
-        "wins": 3,
-        "losses": 5,
+        "rank": "II",
+        "leaguePoints": 14,
+        "wins": 5,
+        "losses": 6,
         "veteran": false,
         "inactive": false,
         "freshBlood": false,
@@ -188,23 +188,73 @@
     "puuid": "idk-DdjpCNU1F6J2zNr9NpbI_xmxWYBIhdXJopSznF7xt7-Uu8DXCXD_ov-fvbAQrtSNhpDdDy35zA",
     "name": "MAiNFRAME 33",
     "profileIconId": 6224,
-    "summonerLevel": 75,
+    "summonerLevel": 76,
     "platform": "euw1",
     "leagueEntries": {
       "420": {
         "leagueId": "c2bc456c-7cc4-4469-ac38-da975b84c4e1",
         "queueType": "RANKED_SOLO_5x5",
         "tier": "EMERALD",
-        "rank": "IV",
-        "leaguePoints": 76,
-        "wins": 10,
+        "rank": "III",
+        "leaguePoints": 67,
+        "wins": 14,
+        "losses": 3,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": true,
+        "hotStreak": false
+      },
+      "440": {
+        "leagueId": "dd466bcc-b405-44c4-ba8c-82e052c54d86",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "PLATINUM",
+        "rank": "I",
+        "leaguePoints": 36,
+        "wins": 5,
         "losses": 2,
         "veteran": false,
         "inactive": false,
         "freshBlood": true,
-        "hotStreak": true
+        "hotStreak": false
+      }
+    }
+  },
+  {
+    "gameName": "Fákers Sohn",
+    "tagLine": "EUW",
+    "summonerId": "6hO-E0DN9WJnyxm2sbZKMuYCbqAGiQiUvkG2WkPLo0UQmEg",
+    "puuid": "uOSCWgoeQBqJOyTmhiTHGFQUMIRqHtkCgph9yx4Lu9M5otorSikdhz8KsjfD5ePjSZDDMvLEdJg4ag",
+    "name": "Fákers Sohn",
+    "profileIconId": 5799,
+    "summonerLevel": 497,
+    "platform": "euw1",
+    "leagueEntries": {
+      "420": {
+        "leagueId": "b57c604e-27e2-4020-b5ca-53fd32b2bc8e",
+        "queueType": "RANKED_SOLO_5x5",
+        "tier": "BRONZE",
+        "rank": "II",
+        "leaguePoints": 51,
+        "wins": 6,
+        "losses": 4,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": false,
+        "hotStreak": false
       },
-      "440": null
+      "440": {
+        "leagueId": "59496d79-27cf-4bb6-b80c-18217ad8ed8f",
+        "queueType": "RANKED_FLEX_SR",
+        "tier": "SILVER",
+        "rank": "I",
+        "leaguePoints": 71,
+        "wins": 4,
+        "losses": 3,
+        "veteran": false,
+        "inactive": false,
+        "freshBlood": false,
+        "hotStreak": false
+      }
     }
   }
 ]
