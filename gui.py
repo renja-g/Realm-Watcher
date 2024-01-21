@@ -73,7 +73,8 @@ def generate_table() -> Table:
     solo_table = Table()
     solo_table.add_column("#")
     solo_table.add_column("Summoner")
-    solo_table.add_column("Rank")
+    solo_table.add_column("Tier")
+    solo_table.add_column("Division")
     solo_table.add_column("LP")
     solo_table.add_column("Games")
     solo_table.add_column("Winrate")
@@ -81,7 +82,8 @@ def generate_table() -> Table:
     flex_table = Table()
     flex_table.add_column("#")
     flex_table.add_column("Summoner")
-    flex_table.add_column("Rank")
+    flex_table.add_column("Tier")
+    flex_table.add_column("Division")
     flex_table.add_column("LP")
     flex_table.add_column("Games")
     flex_table.add_column("Winrate")
@@ -96,7 +98,8 @@ def generate_table() -> Table:
         solo_table.add_row(
             str(rank),
             f"{summoner['gameName']}#{summoner['tagLine']}",
-            f"{summoner['leagueEntries']['420']['tier']} {summoner['leagueEntries']['420']['rank']}",
+            f"{summoner['leagueEntries']['420']['tier']}",
+            f"{summoner['leagueEntries']['420']['rank']}",
             f"{summoner['leagueEntries']['420']['leaguePoints']}",
             f"{summoner['leagueEntries']['420']['wins'] + summoner['leagueEntries']['420']['losses']}",
             f"{round(summoner['leagueEntries']['420']['wins'] / (summoner['leagueEntries']['420']['wins'] + summoner['leagueEntries']['420']['losses']) * 100, 2)}%",
@@ -110,7 +113,8 @@ def generate_table() -> Table:
         flex_table.add_row(
             str(rank),
             f"{summoner['gameName']}#{summoner['tagLine']}",
-            f"{summoner['leagueEntries']['440']['tier']} {summoner['leagueEntries']['440']['rank']}",
+            f"{summoner['leagueEntries']['440']['tier']}",
+            f"{summoner['leagueEntries']['440']['rank']}",
             f"{summoner['leagueEntries']['440']['leaguePoints']}",
             f"{summoner['leagueEntries']['440']['wins'] + summoner['leagueEntries']['440']['losses']}",
             f"{round(summoner['leagueEntries']['440']['wins'] / (summoner['leagueEntries']['440']['wins'] + summoner['leagueEntries']['440']['losses']) * 100, 2)}%",
@@ -172,19 +176,8 @@ def handle_terminal_resize(signum, frame):
 if __name__ == "__main__":
     console = Console()
     with Live(generate_layout(), auto_refresh=False, console=console) as live:
-        # Set up the event handler for the file changes
-        event_handler = FileChangeHandler(live, lambda live: live.update(generate_layout()))
-        observer = Observer()
-        observer.schedule(event_handler, path='.', recursive=False)
-        observer.start()
-
-        # Set up the signal handler for terminal resize
+        # Register a signal handler to handle terminal resizes
         signal.signal(signal.SIGWINCH, handle_terminal_resize)
 
-        try:
-            while True:
-                live.refresh()
-                time.sleep(1)
-        except KeyboardInterrupt:
-            observer.stop()
-    observer.join()
+        while True:
+            time.sleep(10)
