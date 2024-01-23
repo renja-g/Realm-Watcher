@@ -65,7 +65,7 @@ def sort_by_name(summoners: list[dict]):
 def get_summoners(sort_by: SortBy = None):
     """Get a list of summoners, optionally sorted by solo or flex rank."""
     # Load summoners from JSON file
-    with open("summoners.json", "r") as f:
+    with open("data/summoners.json", "r") as f:
         summoners = orjson.loads(f.read())
 
     # Sort summoners based on the requested sort option

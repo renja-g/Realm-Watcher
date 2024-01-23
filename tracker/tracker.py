@@ -38,7 +38,7 @@ def has_summoner_changed(old_data: Dict, new_data: Dict) -> bool:
 async def get_summoners() -> Optional[List[Dict]]:
     """Read and load summoner data from a JSON file."""
     try:
-        with open("summoners.json", "r") as f:
+        with open("data/summoners.json", "r") as f:
             summoners = orjson.loads(f.read())
         return summoners
     except Exception as e:
@@ -126,7 +126,7 @@ async def update_all_summoners(summoners: List[Dict], client: RiotAPIClient) -> 
     summoners = await asyncio.gather(*tasks)
 
     try:
-        with open("summoners.json", "w") as f:
+        with open("data/summoners.json", "w") as f:
             f.write(orjson.dumps(summoners, option=orjson.OPT_INDENT_2).decode())
     except Exception as e:
         logger.error(f"Failed to write summoners.json: {e}")

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ratelimiter:
+    build: ./ratelimiter_proxy
+    ports:
+      - "12227:12227"
+    networks:
+      - app-network
+
+  tracker:
+    build: ./tracker
+    volumes:
+      - ./data:/usr/src/app/data
+    depends_on:
+      - ratelimiter
+    networks:
+      - app-network
+    env_file:
+      - .env
+
+  api:
+    build: ./api
+    volumes:
+      - ./data:/usr/src/app/data
+    ports:
+      - "8000:8000"
+
+
+networks:
+  app-network:
+    driver: bridge
