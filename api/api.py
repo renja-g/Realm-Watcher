@@ -3,6 +3,9 @@ import enum
 import orjson
 from fastapi import FastAPI
 
+from schemas import Summoner
+
+
 app = FastAPI()
 
 
@@ -61,17 +64,19 @@ def sort_by_name(summoners: list[dict]):
 
 
 # Endpoint to get summoners
-@app.get("/summoners/")
+@app.get("/summoners", response_model=list[Summoner])
 def get_summoners(sort_by: SortBy = None):
     """Get a list of summoners, optionally sorted by solo or flex rank."""
     # Load summoners from JSON file
+    summoners = []
     with open("data/summoners.json", "r") as f:
         summoners = orjson.loads(f.read())
 
     # Sort summoners based on the requested sort option
-    if sort_by == SortBy.solo:
-        return sort_summoners(summoners, "420")
-    elif sort_by == SortBy.flex:
-        return sort_summoners(summoners, "440")
-    else:
-        return sort_by_name(summoners)
+    match sort_by:
+        case SortBy.solo:
+            return sort_summoners(summoners, "420")
+        case SortBy.flex:
+            return sort_summoners(summoners, "440")
+        case None:
+            return sort_by_name(summoners)

@@ -1,7 +1,6 @@
 import os
 import asyncio
 import sys
-from typing import Literal
 
 from dotenv import load_dotenv
 import orjson
@@ -38,14 +37,14 @@ platform_to_regions = {
     "vn2": "sea",
 }
 
+
 def platform_to_region(platform: str) -> str:
     '''Return the region correspondent to a given platform'''
     return platform_to_regions[platform]
 
 
-
 async def add_summoner(game_name, tag_line, platform):
-    with open("summoners.json", "r") as f:
+    with open("data/summoners.json", "r") as f:
         summoners = orjson.loads(f.read())
     if any(
         summoner["gameName"] == game_name
@@ -106,13 +105,12 @@ async def add_summoner(game_name, tag_line, platform):
     }
 
     summoners.append(enriched_summoner)
-    with open("summoners.json", "w") as f:
+    with open("data/summoners.json", "w") as f:
         f.write(orjson.dumps(summoners, option=orjson.OPT_INDENT_2).decode())
 
     print(f"Summoner {game_name}#{tag_line} added to the database.")
 
 
-# Run the event loop
 if __name__ == "__main__":
     input_args = sys.argv[1:]
     if len(input_args) != 3:
@@ -120,11 +118,3 @@ if __name__ == "__main__":
         print("If there is a space in the name, surround it with quotes.")
         sys.exit(1)
     asyncio.run(add_summoner(*input_args))
-'''
-Ayato, 11235, euw1
-WeingottBachus, EUW, euw1
-Killer Fisch, 1111, euw1
-Ethereal Peace, EUW, euw1
-ique, ique1, euw1
-bubble, 1608, euw1
-'''

@@ -141,7 +141,7 @@ async def main() -> None:
                     json_response_middleware(orjson.loads),
                     http_error_middleware(3),
                     rate_limiter_middleware(RiotAPIRateLimiter(
-                        proxy="http://127.0.0.1:12227"
+                        proxy="http://ratelimiter:12227"
                     )),
                 ]
             ) as client:
