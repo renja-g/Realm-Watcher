@@ -1,7 +1,7 @@
 # stage 1
-FROM python:3.12.1-alpine3.19 as builder
+FROM python:3.12.1-alpine3.19 as builder-stage
 
-WORKDIR /usr/src/app
+WORKDIR /tmp
 
 RUN apk add --no-cache gcc musl-dev
 
@@ -14,7 +14,11 @@ FROM python:3.12.1-alpine3.19
 
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=builder-stage /tmp/requirements.txt /usr/src/app/requirements.txt
+
+RUN apk add --no-cache gcc musl-dev
+RUN pip install --no-cache-dir --upgrade -r /usr/src/app/requirements.txt
+
 COPY . .
 
 EXPOSE 12227
