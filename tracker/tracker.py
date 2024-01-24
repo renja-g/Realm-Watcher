@@ -135,20 +135,25 @@ async def update_all_summoners(summoners: List[Dict], client: RiotAPIClient) -> 
 async def main() -> None:
     """Main function to orchestrate the updating of summoners."""
     while True:
-        async with RiotAPIClient(
-                default_headers={"X-Riot-Token": RIOT_API_KEY},
-                middlewares=[
-                    json_response_middleware(orjson.loads),
-                    http_error_middleware(3),
-                    rate_limiter_middleware(RiotAPIRateLimiter(
-                        proxy="http://ratelimiter:12227"
-                    )),
-                ]
-            ) as client:
-            summoners = await get_summoners()
-            await update_all_summoners(summoners, client)
-            logger.info("Everything up to date.")
-            await asyncio.sleep(20)
+        try:
+            async with RiotAPIClient(
+                    default_headers={"X-Riot-Token": RIOT_API_KEY},
+                    middlewares=[
+                        json_response_middleware(orjson.loads),
+                        http_error_middleware(3),
+                        rate_limiter_middleware(RiotAPIRateLimiter(
+                            proxy="http://ratelimiter:12227"
+                        )),
+                    ]
+                ) as client:
+                summoners = await get_summoners()
+                await update_all_summoners(summoners, client)
+                logger.info("Everything up to date.")
+                await asyncio.sleep(20)
+
+        except Exception as e:
+            logger.error(f"An error occurred: {e}")
+            await asyncio.sleep(5)
 
 
 if __name__ == "__main__":
