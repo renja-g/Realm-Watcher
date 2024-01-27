@@ -1,5 +1,7 @@
-<script lang="ts">
-    import { Leaderboard } from "$lib/components";
+<script>
+    import { Leaderboard } from '$lib/components';
 </script>
 
-<Leaderboard />
+<div class="home">
+    <Leaderboard />
+</div>
