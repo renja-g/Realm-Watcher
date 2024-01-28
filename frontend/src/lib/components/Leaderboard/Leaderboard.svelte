@@ -3,17 +3,17 @@
 
     let page = "flex";
     let summoners = [];
-    let isLoading = false; // Loading state
+    let isLoading = false;
 
     onMount(async () => {
         await showLeaderboard('solo');
     });
 
     async function fetchData(sortBy) {
-        isLoading = true; // Start loading
+        isLoading = true;
         const response = await fetch(`https://lb-api.renja.dev/summoners?sort_by=${sortBy}`);
         const data = await response.json();
-        isLoading = false; // End loading
+        isLoading = false;
         return data;
     }
 
@@ -77,14 +77,15 @@
                 <th>LP</th>
                 <th>Matches</th>
                 <th>Winrate</th>
-                <th>Socials</th>
             </tr>
             {#each summoners as summoner}
                 {#if getQueueData(summoner, page)}
                     <tr>
                         <td>
-                            <img src={getIconUrl(summoner)} alt="Icon" class="icon-img">
-                            {getDisplayName(summoner, getQueueData(summoner, page))}
+                            <a class="name" href={getUGG(summoner)} target="_blank">
+                                <img src={getIconUrl(summoner)} alt="Icon" class="icon-img">
+                                {getDisplayName(summoner, getQueueData(summoner, page))}
+                            </a>
                         </td>
                         <td>
                             <img src={getTierUrl(getQueueData(summoner, page))} alt="Icon" class="icon-img">
@@ -93,7 +94,6 @@
                         <td>{getQueueData(summoner, page).leaguePoints}</td>
                         <td>{getQueueData(summoner, page).wins + getQueueData(summoner, page).losses}</td>
                         <td>{calculateWinRate(getQueueData(summoner, page))}</td>
-                        <td><a class="ugg" href={getUGG(summoner)} target="_blank">U.GG</a><a class="opgg" href={getOPGG(summoner)} target="_blank">OP.GG</a></td>
                     </tr>
                 {/if}
             {/each}
@@ -176,24 +176,14 @@
         vertical-align: middle;
     }
 
-    .ugg {
-        color: var(--text-color);
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    .ugg:hover {
-        color: rgba(255, 255, 255, 0.3);
-    }
-
-    .opgg {
+    .name {
         color: var(--text-color);
         text-decoration: none;
         transition: color 0.3s;
         margin-left: 10px;
     }
 
-    .opgg:hover {
-        color: rgba(255, 255, 255, 0.3);
+    .name:hover {
+        color: rgba(255, 255, 255, 0.4);
     }
 </style>
