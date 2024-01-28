@@ -120,6 +120,7 @@
         box-shadow: 0 0 10px var(--border-color);
         color: var(--text-color);
         font-family: var(--main-font);
+        font-size: 30px;
     }
 
     .button-container {
