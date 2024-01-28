@@ -2,11 +2,25 @@ import enum
 
 import orjson
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from schemas import Summoner
 
 
 app = FastAPI()
+
+origins = [
+    "*",
+]
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
 
 
 # Define tier and division ranking constants
