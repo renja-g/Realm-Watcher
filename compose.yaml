@@ -18,6 +18,9 @@ services:
       - app-network
     env_file:
       - .env
+    environment:
+      - RATELIMITER_HOST=ratelimiter
+      - RATELIMITER_PORT=12227
 
   api:
     build: ./api

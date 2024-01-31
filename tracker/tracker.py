@@ -16,7 +16,10 @@ from pulsefire.middlewares import json_response_middleware, http_error_middlewar
 # Load environment variables
 load_dotenv()
 RIOT_API_KEY = os.getenv("RIOT_API_KEY")
+RATELIMITER_HOST = os.getenv('RATELIMITER_HOST', 'localhost')
+RATELIMITER_PORT = os.getenv('RATELIMITER_PORT', '12227')
 
+ratelimiter_url = f'http://{RATELIMITER_HOST}:{RATELIMITER_PORT}'
 
 # Mapping of platforms to their respective regions
 PLATFORM_TO_REGIONS = {
@@ -142,7 +145,7 @@ async def main() -> None:
                         json_response_middleware(orjson.loads),
                         http_error_middleware(3),
                         rate_limiter_middleware(RiotAPIRateLimiter(
-                            proxy="http://ratelimiter:12227"
+                            proxy=ratelimiter_url
                         )),
                     ]
                 ) as client:
