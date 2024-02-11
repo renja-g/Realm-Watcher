@@ -42,6 +42,7 @@
 		"bits-ui": "^0.17.0",
 		"clsx": "^2.1.0",
 		"cmdk-sv": "^0.0.13",
+		"dotenv": "^16.4.2",
 		"lucide-svelte": "^0.323.0",
 		"tailwind-merge": "^2.2.1",
 		"tailwind-variants": "^0.1.20",
