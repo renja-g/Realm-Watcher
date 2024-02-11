@@ -6,6 +6,6 @@
 
 {#if tier}
     <div class="flex w-[100px] items-center">
-        <img src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${lowerCaseTier}.svg`} alt={tier.toUpperCase()} class="mr-2 h-4 w-4 text-muted-foreground" />
+        <img src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${lowerCaseTier}.svg`} alt={tier.toUpperCase()} class="mr-2 h-7 w-7 text-muted-foreground" />
     </div>
 {/if}

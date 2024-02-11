@@ -1,16 +1,16 @@
 <script lang="ts">
-	export let iconId: number;
-	export let gameName: string;
-	export let tagLine: string;
+    export let iconId: number;
+    export let gameName: string;
+    export let tagLine: string;
 </script>
 
 {#if iconId || gameName && tagLine}
-	<div class="flex w-[100px] items-center">
-		{#if iconId}
-			<img src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${iconId}.jpg`} alt="P" class="mr-2 h-4 w-4 text-muted-foreground" />
-		{/if}
-		{#if gameName && tagLine}
-			<span class="whitespace-nowrap">{gameName}#{tagLine}</span>
-		{/if}
-	</div>
-{/if}	
+    <div class="flex w-[100px] items-center">
+        {#if iconId}
+            <img src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${iconId}.jpg`} alt="P" class="mr-2 h-7 w-7 text-muted-foreground rounded-md" />
+        {/if}
+        {#if gameName && tagLine}
+            <span class="whitespace-nowrap">{gameName}#{tagLine}</span>
+        {/if}
+    </div>
+{/if}    

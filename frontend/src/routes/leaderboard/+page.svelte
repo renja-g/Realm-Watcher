@@ -7,10 +7,11 @@
     export let data: PageData;
 
     const summoners: Summoner[] = data.props.summoners;
+    // backend should be Runeterra_Terrain_map.webp
 </script>
 
 
-<div class="container mx-auto py-10">
+<div class="leaderboard-root container mx-auto py-10">
     <Tabs.Root value="solo">
         <Tabs.List class="flex">
             <Tabs.Trigger class="flex-1 justify-center" value="solo">Solo</Tabs.Trigger>

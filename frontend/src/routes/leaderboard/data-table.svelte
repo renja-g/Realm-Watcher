@@ -1,13 +1,13 @@
 <script lang="ts">
     import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
     import {
-		addColumnFilters,
-		addHiddenColumns,
-		addPagination,
-		addSelectedRows,
-		addSortBy,
-		addTableFilter,
-	} from "svelte-headless-table/plugins";
+        addColumnFilters,
+        addHiddenColumns,
+        addPagination,
+        addSelectedRows,
+        addSortBy,
+        addTableFilter,
+    } from "svelte-headless-table/plugins";
     import { readable } from "svelte/store";
     import * as Table from "$lib/components/ui/table";
     import { Button } from "$lib/components/ui/button";
@@ -53,10 +53,10 @@
             toggleOrder: ["asc", "desc", undefined],
         }),
         filter: addTableFilter({
-			fn: ({ filterValue, value }) => {
-				return value.toLowerCase().includes(filterValue.toLowerCase());
-			},
-		}),
+            fn: ({ filterValue, value }) => {
+                return value.toLowerCase().includes(filterValue.toLowerCase());
+            },
+        }),
         hide: addHiddenColumns(),
     });
 
@@ -142,8 +142,8 @@
 
 <div>
     <div class="rounded-md border">
-        <Table.Root {...$tableAttrs}>
-            <Table.Header>
+        <Table.Root class="text-xl" {...$tableAttrs}>
+            <Table.Header class="">
                 {#each $headerRows as headerRow}
                 <Subscribe rowAttrs="{headerRow.attrs()}">
                     <Table.Row>

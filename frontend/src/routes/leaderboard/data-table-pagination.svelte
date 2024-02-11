@@ -8,7 +8,7 @@
     } from "lucide-svelte";
     import * as Select from "$lib/components/ui/select";
     import type { TableViewModel } from "svelte-headless-table";
-	import type { AnyPlugins } from "svelte-headless-table/plugins";
+    import type { AnyPlugins } from "svelte-headless-table/plugins";
     import type { Summoner } from "$lib/schemas";
 
     export let tableModel: TableViewModel<Summoner, AnyPlugins>;
