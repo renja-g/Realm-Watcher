@@ -5,7 +5,7 @@
 </script>
 
 {#if tier}
-    <div class="flex w-[100px] items-center">
+    <div class="flex items-center">
         <img src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${lowerCaseTier}.svg`} alt={tier.toUpperCase()} class="mr-2 h-7 w-7 text-muted-foreground" />
     </div>
 {/if}

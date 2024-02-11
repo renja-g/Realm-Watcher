@@ -67,6 +67,7 @@
                     iconId: row.profileIconId,
                     gameName: row.gameName,
                     tagLine: row.tagLine,
+                    platform: row.platform,
                 };
             },
             header: "Summoner",
@@ -75,6 +76,7 @@
                     iconId: value.iconId,
                     gameName: value.gameName,
                     tagLine: value.tagLine,
+                    platform: value.platform,
                 });
             },
             plugins: {

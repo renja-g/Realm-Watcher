@@ -43,15 +43,15 @@
                 <Button
                     variant="ghost"
                     builders={[builder]}
-                    class="-ml-3 h-8 data-[state=open]:bg-accent"
+                    class="-ml-3 text-xl data-[state=open]:bg-accent"
                 >
                     <slot />
                     {#if props.sort.order === "desc"}
-                        <MoveDown class="ml-2 h-4 w-4" />
+                        <MoveDown class="ml-2 h-6 w-6" />
                     {:else if props.sort.order === "asc"}
-                        <MoveUp class="ml-2 h-4 w-4" />
+                        <MoveUp class="ml-2 h-6 w-6" />
                     {:else}
-                        <ArrowUpDown class="ml-2 h-4 w-4" />
+                        <ArrowUpDown class="ml-2 h-6 w-6" />
                     {/if}
                 </Button>
             </DropdownMenu.Trigger>
