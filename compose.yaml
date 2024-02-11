@@ -35,6 +35,9 @@ services:
       - "3000:3000"
     depends_on:
       - api
+    environment:
+      - API_HOST=api
+      - API_PORT=8000
 
 networks:
   app-network:

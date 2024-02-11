@@ -1,11 +1,3 @@
-<svelte:head>
-    <title>Leaderboard</title> 
-</svelte:head>
-
-<script>
-    import { Leaderboard } from '$lib/components';
-</script>
-
-<div class="home">
-    <Leaderboard />
-</div>
+<a href="leaderboard">
+    <h1>Leaderboard</h1>
+</a>
