@@ -20,9 +20,9 @@
     const { selectedDataIds } = pluginStates.select;
 </script>
 
-<div class="flex items-center justify-between px-2">
-    <div class="flex-1 text-sm text-muted-foreground">
-        <span class="hidden lg:inline">{$pageRows.length} rows</span>
+<div class="flex items-center justify-between px-2 py-2">
+    <div class="flex-1 text-sm">
+        <span class="text-sm font-medium">{$pageRows.length} rows</span>
     </div>
     <div class="flex items-center space-x-6 lg:space-x-8">
         <div class="flex items-center space-x-2">

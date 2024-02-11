@@ -142,10 +142,10 @@
 </script>
 
 
-<div>
+<div> 
     <div class="rounded-md border">
         <Table.Root class="text-xl" {...$tableAttrs}>
-            <Table.Header class="">
+            <Table.Header>
                 {#each $headerRows as headerRow}
                 <Subscribe rowAttrs="{headerRow.attrs()}">
                     <Table.Row>
@@ -156,7 +156,7 @@
                             props="{cell.props()}"
                             let:props
                             >
-                            <Table.Head {...attrs}>
+                            <Table.Head {...attrs} class="text-foreground bg-background/55">
                                 {#if sortables.includes(cell.id)}
                                     <DataTableColumnHeader {props}
                                         ><Render
@@ -190,5 +190,5 @@
             </Table.Body>
         </Table.Root>
     </div>
-    <DataTablePagination {tableModel}/>
+    <DataTablePagination {tableModel} />
 </div>
