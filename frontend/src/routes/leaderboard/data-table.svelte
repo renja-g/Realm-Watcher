@@ -26,22 +26,50 @@
 
     // sort the summoners by their league
     // Tier > Rank > LP
+    const tierOrder = {
+    CHALLENGER: 1,
+    GRANDMASTER: 2,
+    MASTER: 3,
+    DIAMOND: 4,
+    EMERALD: 5,
+    PLATINUM: 6,
+    GOLD: 7,
+    SILVER: 8,
+    BRONZE: 9,
+    IRON: 10,
+    };
+
+    const rankOrder = {
+        I: 1,
+        II: 2,
+        III: 3,
+        IV: 4,
+    };
+
     data.sort((a, b) => {
-        const aTier = a.leagueEntries[leagueId]!.tier;
-        const bTier = b.leagueEntries[leagueId]!.tier;
-        if (aTier !== bTier) {
-            return aTier.localeCompare(bTier);
+        const aEntry = a.leagueEntries[leagueId];
+        const bEntry = b.leagueEntries[leagueId];
+
+        if (!aEntry || !bEntry) {
+            return 0;
         }
 
-        const aRank = a.leagueEntries[leagueId]!.rank;
-        const bRank = b.leagueEntries[leagueId]!.rank;
-        if (aRank !== bRank) {
-            return aRank.localeCompare(bRank);
+        // sort by tier
+        const aTierValue = tierOrder[aEntry.tier as keyof typeof tierOrder] || 0;
+        const bTierValue = tierOrder[bEntry.tier as keyof typeof tierOrder] || 0;
+        if (aTierValue !== bTierValue) {
+            return aTierValue - bTierValue;
         }
 
-        const aLP = a.leagueEntries[leagueId]!.leaguePoints;
-        const bLP = b.leagueEntries[leagueId]!.leaguePoints;
-        return bLP - aLP;
+        // sort by rank
+        const aRankValue = rankOrder[aEntry.rank as keyof typeof rankOrder] || 0;
+        const bRankValue = rankOrder[bEntry.rank as keyof typeof rankOrder] || 0;
+        if (aRankValue !== bRankValue) {
+            return aRankValue - bRankValue;
+        }
+
+        // sort by LP
+        return bEntry.leaguePoints - aEntry.leaguePoints;
     });
 
     const table = createTable(readable(data), {
