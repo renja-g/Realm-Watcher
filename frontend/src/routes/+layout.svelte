@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-    <title>Leaderboard</title>
+    <title>LEADERBOARD</title>
 </svelte:head>
 
 <ModeWatcher />
