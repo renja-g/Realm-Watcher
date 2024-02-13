@@ -22,7 +22,7 @@
 
 <div class="flex items-center justify-between px-2">
     <div class="flex-1 text-sm text-muted-foreground">
-        <span class="hidden lg:inline">{$pageRows.length} rows</span>
+        <span class="hidden lg:inline">{$pageRows.length} out of {$rows.length} rows</span>
     </div>
     <div class="flex items-center space-x-6 lg:space-x-8">
         <div class="flex items-center space-x-2">
