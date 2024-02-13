@@ -2,18 +2,14 @@
 FROM node:20.11.0-alpine3.18 AS builder
 
 WORKDIR /app
+
 COPY package.json package-lock.json ./
 
-# Install all dependencies including 'devDependencies'
 RUN npm ci
 
 COPY . .
 
-# Build the application
 RUN npm run build
-
-# Remove development dependencies
-RUN npm prune --production
 
 # Stage 2: Runtime stage
 FROM node:20.11.0-alpine3.18
