@@ -2,7 +2,6 @@
     import { MoveDown, MoveUp, ArrowUpDown } from 'lucide-svelte';
     import { cn } from "$lib/utils";
     import { Button } from "$lib/components/ui/button";
-    import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 
     let className: string | undefined | null = undefined;
     export { className as class };
@@ -10,57 +9,29 @@
         select: never;
         sort: {
             order: "desc" | "asc" | undefined;
-            toggle: (event: Event) => void;
-            clear: () => void;
+            toggle: () => void;
             disabled: boolean;
         };
         filter: never;
     };
-
-    function handleAscSort(e: Event) {
-        if (props.sort.order === "asc") {
-            return;
-        }
-        props.sort.toggle(e);
-    }
-
-    function handleDescSort(e: Event) {
-        if (props.sort.order === "desc") {
-            return;
-        }
-        props.sort.toggle(e);
-    }
-
-    function handleClearSort() {
-        props.sort.clear();
-    }
 </script>
 
 {#if !props.sort.disabled}
     <div class={cn("flex items-center", className)}>
-        <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild let:builder>
-                <Button
-                    variant="ghost"
-                    builders={[builder]}
-                    class="-ml-3 text-xl data-[state=open]:bg-accent"
-                >
-                    <slot />
-                    {#if props.sort.order === "desc"}
-                        <MoveDown class="ml-2 h-6 w-6" />
-                    {:else if props.sort.order === "asc"}
-                        <MoveUp class="ml-2 h-6 w-6" />
-                    {:else}
-                        <ArrowUpDown class="ml-2 h-6 w-6" />
-                    {/if}
-                </Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content align="start">
-                <DropdownMenu.Item on:click={handleAscSort}>Asc</DropdownMenu.Item>
-                <DropdownMenu.Item on:click={handleDescSort}>Desc</DropdownMenu.Item>
-                <DropdownMenu.Item on:click={handleClearSort}>Reset</DropdownMenu.Item>
-            </DropdownMenu.Content>
-        </DropdownMenu.Root>
+        <Button
+            variant="ghost"
+            class="-ml-3 text-xl data:[props.sort.order]:bg-accent"
+            on:click={props.sort.toggle}
+        >
+            <slot />
+            {#if props.sort.order === "desc"}
+                <MoveDown class="ml-2 h-6 w-6" />
+            {:else if props.sort.order === "asc"}
+                <MoveUp class="ml-2 h-6 w-6" />
+            {:else}
+                <ArrowUpDown class="ml-2 h-6 w-6" />
+            {/if}
+        </Button>
     </div>
 {:else}
     <slot />
