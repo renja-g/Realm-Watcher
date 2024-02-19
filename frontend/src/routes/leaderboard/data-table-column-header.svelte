@@ -9,7 +9,7 @@
         select: never;
         sort: {
             order: "desc" | "asc" | undefined;
-            toggle: () => void;
+            toggle: (event: Event) => void;
             disabled: boolean;
         };
         filter: never;
