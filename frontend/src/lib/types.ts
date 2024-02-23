@@ -11,8 +11,8 @@ export type Summoner = {
 }
 
 export interface LeagueEntries {
-    "420"?: N420
-    "440"?: N440
+    "420"?: N420 | null
+    "440"?: N440 | null
 }
 
 export interface N420 {
