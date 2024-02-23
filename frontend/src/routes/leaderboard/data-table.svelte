@@ -1,7 +1,6 @@
 <script lang="ts">
     import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
     import {
-        addColumnFilters,
         addHiddenColumns,
         addPagination,
         addSelectedRows,
@@ -16,6 +15,7 @@
     import DataTableSummonerCell from "./data-table-summoner-cell.svelte";
     import DataTableTierCell from "./data-table-tier-cell.svelte";
     import DataTablePagination from "./data-table-pagination.svelte";
+    import DataTableRowActions from "./data-table-row-actions.svelte";
 
 
     export let leagueId: "420" | "440" = "420";
@@ -71,6 +71,7 @@
         // sort by LP
         return bEntry.leaguePoints - aEntry.leaguePoints;
     });
+    console.log(data);
 
     const table = createTable(readable(data), {
         select: addSelectedRows(),
@@ -87,6 +88,8 @@
         }),
         hide: addHiddenColumns(),
     });
+
+    const isAdmin = true;
 
     const columns = table.createColumns([
         table.column({
@@ -161,7 +164,21 @@
             },
             header: "Winrate"
         }),
-    ]);
+        table.display({
+            id: "actions",
+            header: () => {
+                return "";
+            },
+            cell: ({ row }) => {
+                if (row.isData() && row.original) {
+                    return createRender(DataTableRowActions, {
+                        row: row.original,
+                    });
+                }
+                return "";
+            },
+        }),
+    ].filter(Boolean));
 
     const tableModel = table.createViewModel(columns);
     const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = tableModel;

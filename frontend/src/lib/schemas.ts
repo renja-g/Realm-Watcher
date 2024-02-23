@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { nullable, z } from "zod";
 
 const N420Schema = z.object({
     leagueId: z.string(),
@@ -29,11 +29,11 @@ const N440Schema = z.object({
 });
 
 const LeagueEntriesSchema = z.object({
-    "420": N420Schema.optional(),
-    "440": N440Schema.optional(),
+    "420": N420Schema.optional().nullable(),
+    "440": N440Schema.optional().nullable(),
 });
 
-const SummonerSchema = z.object({
+export const summonerSchema = z.object({
     gameName: z.string(),
     tagLine: z.string(),
     summonerId: z.string(),
@@ -46,4 +46,4 @@ const SummonerSchema = z.object({
 });
 
 // Infer the Summoner type from the schema
-export type Summoner = z.infer<typeof SummonerSchema>;
+export type Summoner = z.infer<typeof summonerSchema>;
