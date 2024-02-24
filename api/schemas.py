@@ -45,3 +45,9 @@ class Summoner(BaseModel):
     summonerLevel: int
     platform: str
     leagueEntries: dict[str, LeagueEntry | None]
+
+
+class SummonerCreate(BaseModel):
+    gameName: str
+    tagLine: str
+    platform: str
