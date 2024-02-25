@@ -42,3 +42,5 @@ services:
 networks:
   app-network:
     driver: bridge
+    networks:
+      - app-network
