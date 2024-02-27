@@ -71,7 +71,6 @@
         // sort by LP
         return bEntry.leaguePoints - aEntry.leaguePoints;
     });
-    console.log(data);
 
     const table = createTable(readable(data), {
         select: addSelectedRows(),

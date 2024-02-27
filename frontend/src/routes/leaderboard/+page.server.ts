@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad, Actions } from './$types';
 import type { Summoner } from '$lib/types';
+
 
 
 // Load environment variables
@@ -20,3 +21,18 @@ export const load: PageServerLoad = async () => {
         }
     };
 };
+
+// Delete summoner
+export const actions = {
+    default: async ({ request }) => {
+        console.log('Deleting summoner...');
+        const data = await request.formData();
+        const puuid = data.get('puuid');
+        const res = await fetch(`http://${API_HOST}:${API_PORT}/summoners/${puuid}`, {
+            method: 'DELETE'
+        });
+        return {
+            status: res.status
+        };
+    }
+} satisfies Actions;

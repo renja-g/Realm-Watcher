@@ -5,21 +5,30 @@
     import { summonerSchema, type Summoner } from "$lib/schemas";
 
     export let row: Summoner;
-    const task = summonerSchema.parse(row);
+    const summoner = summonerSchema.parse(row);
+
+    let form: HTMLFormElement;
+
+    function handleSubmit() {
+        form.submit();
+    }
 </script>
 
-<DropdownMenu.Root>
-    <DropdownMenu.Trigger asChild let:builder>
-        <Button
-            variant="ghost"
-            builders={[builder]}
-            class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
-        >
-            <MoreHorizontal class="h-4 w-4" />
-            <span class="sr-only">Open menu</span>
-        </Button>
-    </DropdownMenu.Trigger>
-    <DropdownMenu.Content class="w-[160px]" align="end">
-        <DropdownMenu.Item>Delete</DropdownMenu.Item>
-    </DropdownMenu.Content>
-</DropdownMenu.Root>
+<form id="myForm" method="POST" bind:this={form}>
+    <input type="hidden" name="puuid" value={summoner.puuid} />
+    <DropdownMenu.Root>
+        <DropdownMenu.Trigger asChild let:builder>
+            <Button
+                variant="ghost"
+                builders={[builder]}
+                class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+            >
+                <MoreHorizontal class="h-4 w-4" />
+                <span class="sr-only">Open menu</span>
+            </Button>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content class="w-[160px]" align="end">
+            <DropdownMenu.Item on:click={handleSubmit}>Delete</DropdownMenu.Item>
+        </DropdownMenu.Content>
+    </DropdownMenu.Root>
+</form>
