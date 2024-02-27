@@ -47,9 +47,10 @@ services:
     environment:
       - API_HOST=api
       - API_PORT=8000
+      - ORIGIN=http://localhost:3000
+    networks:
+      - app-network
 
 networks:
   app-network:
     driver: bridge
-    networks:
-      - app-network
