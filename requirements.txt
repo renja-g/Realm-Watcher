@@ -13,7 +13,7 @@ loguru==0.7.2
 markdown-it-py==3.0.0
 mdurl==0.1.2
 multidict==6.0.4
-orjson==3.9.10
+orjson==3.9.15
 pulsefire==2.0.2
 pydantic==2.5.3
 pydantic_core==2.14.6
