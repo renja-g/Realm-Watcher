@@ -1,25 +1,19 @@
-# stage 1
-FROM python:3.12.1-alpine3.19 as builder-stage
+# Stage 1: Build
+FROM python:3.12.2-alpine3.19 as builde
 
-WORKDIR /tmp
-
-RUN apk add --no-cache gcc musl-dev
+WORKDIR /build
 
 COPY requirements.txt .
+RUN pip install --user -r requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Stage 2: Runtime
+FROM python:3.12.2-alpine3.19 as runtime
 
-# stage 2
-FROM python:3.12.1-alpine3.19
-
-WORKDIR /usr/src/app
-
-COPY --from=builder-stage /tmp/requirements.txt /usr/src/app/requirements.txt
-
-RUN apk add --no-cache gcc musl-dev
-RUN pip install --no-cache-dir --upgrade -r /usr/src/app/requirements.txt
-
+COPY --from=builde /root/.local /root/.local
 COPY . .
+
+# Make scripts in .local usable
+ENV PATH=/root/.local/bin:$PATH
 
 EXPOSE 8000
 
