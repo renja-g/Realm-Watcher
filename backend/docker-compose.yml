@@ -1,0 +1,33 @@
+services:
+  default_database:
+    image: mongo:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "27017:27017"
+    volumes:
+      - default_database_data:/data/db
+    networks:
+      - app-network
+
+  backend:
+    build: .
+    depends_on:
+      - default_database
+    env_file:
+      - .env
+    ports:
+      - "8001:8000"
+    environment:
+      - DEFAULT_DATABASE_HOSTNAME=default_database
+    networks:
+      - app-network
+
+
+volumes:
+  default_database_data:
+
+networks:
+  app-network:
+    driver: bridge
