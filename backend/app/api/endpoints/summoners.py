@@ -72,7 +72,7 @@ async def create_summoner(
 
 
 @router.get("/{puuid}", response_model=SummonerWithLeagueEntriesResponse)
-async def get_summoners(
+async def get_summoner(
     puuid: str,
 ):
     summoner = await Summoner.find_one(Summoner.puuid == puuid, fetch_links=True)
