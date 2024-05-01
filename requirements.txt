@@ -8,7 +8,7 @@ fastapi==0.109.1
 frozenlist==1.4.1
 h11==0.14.0
 httptools==0.6.1
-idna==3.6
+idna==3.7
 loguru==0.7.2
 markdown-it-py==3.0.0
 mdurl==0.1.2
