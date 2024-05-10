@@ -61,11 +61,9 @@ async def get_league(client: RiotAPIClient, summoner: Dict) -> Dict[str, Optiona
     for entry in api_league_entries:
         if entry["queueType"] == "RANKED_SOLO_5x5":
             entry.pop("summonerId")
-            entry.pop("summonerName")
             league_entries["420"] = entry
         elif entry["queueType"] == "RANKED_FLEX_SR":
             entry.pop("summonerId")
-            entry.pop("summonerName")
             league_entries["440"] = entry
     return league_entries
 
