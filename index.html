@@ -89,7 +89,7 @@
 
         .player-card {
             display: grid;
-            grid-template-columns: 250px 300px auto;
+            grid-template-columns: 25px 250px 300px auto;
             gap: 1rem;
             padding: 1rem;
             border-bottom: 1px solid #374151;
@@ -104,6 +104,12 @@
             background: #2D3748;
             transform: translateY(-1px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .rank-number {
+            font-weight: bold;
+            color: #F3F4F6;
+            text-align: center;
         }
 
         .player-info {
@@ -351,7 +357,7 @@
         function renderPlayers(players) {
             const newContainer = document.createElement('div');
             
-            players.forEach(player => {
+            players.forEach((player, index) => {
                 const winRate = calculateWinRate(player.league.wins, player.league.losses);
                 const total = player.league.wins + player.league.losses;
                 const winsPercent = (player.league.wins / total) * 100;
@@ -363,6 +369,7 @@
                 playerCard.target = '_blank';
                 playerCard.rel = 'noopener noreferrer';
                 playerCard.innerHTML = `
+                    <div class="rank-number">${index + 1}</div>
                     <div class="player-info">
                         <img class="profile-icon" src="${getProfileIconUrl(player.summoner.profileIconId)}" alt="Profile Icon">
                         <div class="player-name-container">
