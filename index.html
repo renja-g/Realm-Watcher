@@ -246,7 +246,7 @@
 
         .skeleton-card {
             display: grid;
-            grid-template-columns: 250px 300px auto;
+            grid-template-columns: 25px 250px 300px auto;
             gap: 1rem;
             padding: 1rem;
             border-bottom: 1px solid #374151;
@@ -262,6 +262,12 @@
         .skeleton-text {
             height: 1rem;
             border-radius: 4px;
+        }
+
+        .skeleton-rank-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 25%;
         }
 
         .skeleton-name {
@@ -345,6 +351,7 @@
         function createSkeletonCard() {
             return `
                 <div class="skeleton-card">
+                    <div class="skeleton skeleton-rank-number"></div>
                     <div class="player-info">
                         <div class="skeleton skeleton-profile"></div>
                         <div class="player-name-container">
