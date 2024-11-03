@@ -150,6 +150,11 @@
         .player-name {
             font-weight: 600;
             color: #F3F4F6;
+            text-decoration: none;
+        }
+
+        .player-name:hover {
+            text-decoration: underline;
         }
 
         .player-tag {
@@ -402,17 +407,14 @@
                 const winsPercent = (player.league.wins / total) * 100;
                 const lossesPercent = (player.league.losses / total) * 100;
                 
-                const playerCard = document.createElement('a');
+                const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
-                playerCard.href = `https://www.op.gg/summoners/euw/${player.summoner.gameName}-${player.summoner.tagLine}`;
-                playerCard.target = '_blank';
-                playerCard.rel = 'noopener noreferrer';
                 playerCard.innerHTML = `
                     <div class="rank-number">${index + 1}</div>
                     <div class="player-info">
                         <img class="profile-icon" src="${getProfileIconUrl(player.summoner.profileIconId)}" alt="Profile Icon">
                         <div class="player-name-container">
-                            <span class="player-name">${player.summoner.gameName}</span>
+                            <a class="player-name" href="https://www.op.gg/summoners/euw/${player.summoner.gameName}-${player.summoner.tagLine}" target="_blank" rel="noopener noreferrer">${player.summoner.gameName}</a>
                             <span class="player-tag">#${player.summoner.tagLine}</span>
                         </div>
                     </div>
