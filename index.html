@@ -206,7 +206,7 @@
             text-align: right;
         }
 
-        /* New skeleton loading styles */
+        /* Skeleton styles */
         @keyframes shimmer {
             0% {
                 background-position: -1000px 0;
@@ -400,17 +400,14 @@
                 const queueType = button.dataset.queue;
                 if (queueType === currentQueue) return;
 
-                // Update active button
                 queueButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
-                // Update queue and fetch new data
                 currentQueue = queueType;
                 fetchLeaderboard(queueType);
             });
         });
 
-        // Initial load
         fetchLeaderboard(currentQueue);
     </script>
 </body>
