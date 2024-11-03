@@ -1,1 +1,4 @@
-![image](https://github.com/user-attachments/assets/7bae83cb-626d-41a7-9caf-5e1da67139f8)
+# Realm-Watcher
+Realm-Watcher is a simple leaderboard frontend that leverages [Realm-Warp](https://github.com/renja-g/Realm-Warp) as a backend.
+
+![Image](https://github.com/user-attachments/assets/13c30678-2ac7-4a82-bc27-4c5bea704c98)
