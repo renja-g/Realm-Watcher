@@ -13,15 +13,27 @@
             background: #0f172a;
             color: #ffffff;
             padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .leaderboard {
-            max-width: 900px;
-            margin: 0 auto;
             background: #1e293b;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            width: 100%;
         }
 
         .leaderboard-header {
@@ -280,17 +292,20 @@
 
         .footer {
             text-align: start;
-            margin-top: 2rem;
             font-size: 0.875rem;
             color: #9CA3AF;
             padding: 1rem;
             background: #1e293b;
             border-radius: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="leaderboard">
+    <div class="main-container">
+        <div class="leaderboard">
         <div class="leaderboard-header">
             <h1 class="leaderboard-title">League of Legends Leaderboard</h1>
             <div class="queue-selector">
@@ -299,6 +314,7 @@
             </div>
         </div>
         <div id="players-container"></div>
+    </div>
     </div>
     <footer class="footer">
         This site is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
