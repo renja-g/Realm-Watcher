@@ -1,0 +1,2 @@
+const REALM_WARP_URL = 'CHANGE_THIS'; // The this to your realm warp api url
+// https://github.com/renja-g/Realm-Warp
