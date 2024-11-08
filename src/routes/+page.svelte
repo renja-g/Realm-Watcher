@@ -50,7 +50,7 @@
   </div>
 
   <!-- Player Rows -->
-  <div class="bg-slate-800">
+  <div class="rounded-b-lg bg-slate-800">
     {#if entries.error}
       <div class="flex items-center justify-center py-10">
         <span class="text-red-500 text-lg">An error occurred while fetching the leaderboard. Please try again later.</span>
