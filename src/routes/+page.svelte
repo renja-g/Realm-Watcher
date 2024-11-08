@@ -3,6 +3,7 @@
   import LeaderboardSkeleton from '$lib/components/LeaderboardRow/LeaderboardSkeleton.svelte';
   import useFetchLeaderboard from '$lib/hooks/useFetchLeaderboard.svelte';
   import type { queueType } from '$lib/types/types';
+  import { error } from '@sveltejs/kit';
 
   const tabs: { id: queueType; label: string }[] = [
     { id: 'RANKED_SOLO_5x5', label: 'RANKED SOLO/DUO' },
@@ -15,10 +16,10 @@
 </script>
 
 <div class="min-h-screen bg-slate-900 px-20 py-8 text-white">
-  <h1 class="mb-12 text-center text-4xl font-bold">Realm Watcher</h1>
+  <h1 class="mb-6 text-center text-4xl font-bold">Realm Watcher</h1>
 
   <!-- Tabs -->
-  <div class="mb-8 flex justify-center border-b border-gray-700">
+  <div class="mb-1 flex justify-center border-b border-gray-700">
     {#each tabs as tab}
       <button
         class="relative px-8   py-2 {activeTab === tab.id
@@ -50,7 +51,11 @@
 
   <!-- Player Rows -->
   <div class="bg-slate-800">
-    {#if entries.isLoading}
+    {#if entries.error}
+      <div class="flex items-center justify-center py-10">
+        <span class="text-red-500 text-lg">An error occurred while fetching the leaderboard. Please try again later.</span>
+      </div>
+    {:else if entries.isLoading}
       <LeaderboardSkeleton rows={10} />
     {:else}
       {#each entries.entries as entry, index}
