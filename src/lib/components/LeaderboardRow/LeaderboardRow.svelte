@@ -61,7 +61,7 @@
   </div>
 
   <!-- Profile -->
-  <div class="col-span-3 flex items-center">
+  <div class="col-span-3 flex items-center justify-center">
     <img class="mr-4 h-11 w-11 rounded-full" src={iconUrl} alt="Profile Icon" />
     <div class="flex flex-col">
       <a  href={opggUrl}  target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">
@@ -72,7 +72,7 @@
   </div>
 
   <!-- Rank -->
-  <div class="col-span-3 flex items-center">
+  <div class="col-span-3 flex items-center justify-center">
     <img class="mr-2 h-8 w-8" src={tierIconUrl} alt="Rank Icon" />
     <span class=" mr-2">{entry.league.tier}</span>
     <span class=" mr-2">{entry.league.rank}</span>
@@ -80,15 +80,22 @@
   </div>
 
   <!-- LP Diff -->
-  <div class={`col-span-2 font-semibold ${
+  <div class={`col-span-1 font-semibold text-center ${
     lpDiff > 0 ? 'text-green-500' : lpDiff < 0 ? 'text-red-500' : 'text-white'
   }`}>
     {lpDiff}
   </div>
 
+  <!-- KDA -->
+  <div class="col-span-1 text-center">
+    <div class="flex items-center justify-center">
+      <div class="mr-2">6.2</div>
+    </div>
+  </div>
+
   <!-- Win Rate -->
   <div class="col-span-3">
-    <div class="flex items-center">
+    <div class="flex items-center justify-center">
       <div
         class="rounded-l bg-blue-500 px-2 py-0.3 text-sm font-semibold"
         style="width: {winWidth}%;"

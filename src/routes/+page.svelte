@@ -44,12 +44,14 @@
   <div class="grid grid-cols-12 border-b-2 border-gray-700 px-6 py-2 text-sm text-gray-400">
     <div class="col-span-1">#</div>
     <div class="col-span-3">Profile</div>
-    <div class="col-span-3">Rank</div>
-    <div class="col-span-2 flex items-center">
-      LP Diff
-      <Tooltip class="h-4 w-4" text="LP gain/loss over the last 5 games." />
+    <div class="col-span-3 text-center">Rank</div>
+    <div class="col-span-1 flex justify-center">
+      <Tooltip text="LP gain/loss over the last 5 games." class="text-gray-400">
+        LP Diff
+      </Tooltip>
     </div>
-    <div class="col-span-3">Win Rate</div>
+    <div class="col-span-1 text-center">KDA</div>
+    <div class="col-span-3 text-center">Win Rate</div>
   </div>
 
   <!-- Player Rows -->
