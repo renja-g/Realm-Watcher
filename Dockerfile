@@ -1,10 +1,22 @@
-FROM nginx:1.27.2-alpine
+FROM node:20 AS build
 
-COPY . /usr/share/nginx/html
+WORKDIR /app
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY package*.json .
 
-RUN nginx -t
+RUN npm ci
 
-HEALTHCHECK --interval=30s --timeout=3s \
-    CMD wget --quiet --tries=1 --spider http://localhost:80 || exit 1
+COPY . .
+RUN npm run build
+RUN npm prune --production
+
+FROM node:18 AS run
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+COPY --from=build /app/build ./build
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/node_modules ./node_modules
+RUN ulimit -c unlimited
+ENTRYPOINT ["node", "build"]

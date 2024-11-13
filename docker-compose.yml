@@ -1,8 +1,9 @@
 services:
-  web:
+  app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     ports:
-      - "8888:80"
-    restart: unless-stopped
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+
