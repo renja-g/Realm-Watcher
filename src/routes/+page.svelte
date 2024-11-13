@@ -3,7 +3,7 @@
   import LeaderboardSkeleton from '$lib/components/LeaderboardRow/LeaderboardSkeleton.svelte';
   import useFetchLeaderboard from '$lib/hooks/useFetchLeaderboard.svelte';
   import type { queueType } from '$lib/types/types';
-  import { error } from '@sveltejs/kit';
+  import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 
   const tabs: { id: queueType; label: string }[] = [
     { id: 'RANKED_SOLO_5x5', label: 'RANKED SOLO/DUO' },
@@ -45,7 +45,10 @@
     <div class="col-span-1">#</div>
     <div class="col-span-3">Profile</div>
     <div class="col-span-3">Rank</div>
-    <div class="col-span-2">Last 5 Games</div>
+    <div class="col-span-2 flex items-center">
+      LP Diff
+      <Tooltip class="h-4 w-4" text="LP gain/loss over the last 5 games." />
+    </div>
     <div class="col-span-3">Win Rate</div>
   </div>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { LeaderboardEntry } from '$lib/types/types';
+  import type { LeaderboardEntry, Match } from '$lib/types/types';
 
   const {
     index,
@@ -14,8 +14,40 @@
   const opggUrl = `https://www.op.gg/summoners/euw/${entry.summoner.gameName}-${entry.summoner.tagLine}`;
 
 
+  function calcLPDiff(matches: Match[]): number {
+    if (matches.length < 2) return 0;
+
+    const tierWorth: Record<string, number> = {
+      "IRON": 0,
+      "BRONZE": 400,
+      "SILVER": 800,
+      "GOLD": 1200,
+      "PLATINUM": 1600,
+      "EMERALD": 2000,
+      "DIAMOND": 2400,
+      "MASTER": 2800,
+      "GRANDMASTER": 2800,
+      "CHALLENGER": 2800
+    };
+
+    const rankWorth: Record<string, number> = {
+      "IV": 0,
+      "III": 100,
+      "II": 200,
+      "I": 300
+    };
+
+    const firstMatch = matches[0];
+    const compareMatch = matches[Math.min(4, matches.length - 1)]; // Get 5th match (index 4) or last available
+
+    const currentWorth = tierWorth[firstMatch.league.tier] + rankWorth[firstMatch.league.rank] + firstMatch.league.leaguePoints;
+    const previousWorth = tierWorth[compareMatch.league.tier] + rankWorth[compareMatch.league.rank] + compareMatch.league.leaguePoints;
+
+    return currentWorth - previousWorth;
+  }
+
   // Random Sample Data -53 - - 54
-  const lpChange = Math.floor(Math.random() * 107) - 54;
+  const lpDiff = calcLPDiff(entry.matches);
 
   const winRate = (entry.league.wins / (entry.league.wins + entry.league.losses)) * 100;
   const winWidth = winRate * 0.6; // Scale factor for width
@@ -47,22 +79,24 @@
     <span class="text-gray-400">{entry.league.leaguePoints}</span>
   </div>
 
-  <!-- Last 5 Games -->
-  <div class={`col-span-2 font-semibold ${lpChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-    {lpChange}
+  <!-- LP Diff -->
+  <div class={`col-span-2 font-semibold ${
+    lpDiff > 0 ? 'text-green-500' : lpDiff < 0 ? 'text-red-500' : 'text-white'
+  }`}>
+    {lpDiff}
   </div>
 
   <!-- Win Rate -->
   <div class="col-span-3">
     <div class="flex items-center">
       <div
-        class="rounded-l bg-blue-500 px-2 py-1 text-sm font-semibold"
+        class="rounded-l bg-blue-500 px-2 py-0.3 text-sm font-semibold"
         style="width: {winWidth}%;"
       >
         {entry.league.wins}W
       </div>
       <div
-        class="mr-2 rounded-r bg-red-500 px-2 py-1 text-right text-sm font-semibold"
+        class="mr-2 rounded-r bg-red-500 px-2 py-0.3 text-right text-sm font-semibold"
         style="width: {lossWidth}%;"
       >
         {entry.league.losses}L
