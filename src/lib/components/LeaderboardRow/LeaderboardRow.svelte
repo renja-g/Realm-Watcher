@@ -63,8 +63,58 @@
     return kda.deaths === 0 ? kda.kills + kda.assists : (kda.kills + kda.assists) / kda.deaths;
   }
 
+  function getLastLpChange(matches: Match[]): { win: number | null; loss: number | null } {
+    const tierWorth: Record<string, number> = {
+      "IRON": 0,
+      "BRONZE": 400,
+      "SILVER": 800,
+      "GOLD": 1200,
+      "PLATINUM": 1600,
+      "EMERALD": 2000,
+      "DIAMOND": 2400,
+      "MASTER": 2800,
+      "GRANDMASTER": 2800,
+      "CHALLENGER": 2800
+    };
+
+    const rankWorth: Record<string, number> = {
+      "IV": 0,
+      "III": 100,
+      "II": 200,
+      "I": 300
+    };
+
+    function getTotalLP(match: Match): number {
+      return tierWorth[match.league.tier] + rankWorth[match.league.rank] + match.league.leaguePoints;
+    }
+
+    let lastWinLP = null;
+    let lastLossLP = null;
+
+    for (let i = 0; i < matches.length - 1; i++) {
+      const currentMatch = matches[i];
+      const nextMatch = matches[i + 1];
+      
+      const lpDiff = getTotalLP(currentMatch) - getTotalLP(nextMatch);
+
+      if (currentMatch.win && lastWinLP === null) {
+        lastWinLP = lpDiff;
+      } else if (!currentMatch.win && lastLossLP === null) {
+        lastLossLP = -lpDiff;
+      }
+
+      if (lastWinLP !== null && lastLossLP !== null) break;
+    }
+
+    return {
+      win: lastWinLP,
+      loss: lastLossLP
+    };
+  }
+
   const lpDiff = calcLPDiff(entry.matches);
   const kda = calcKDA(entry.matches);
+  const lpChange = getLastLpChange(entry.matches);
 
   const winRate = (entry.league.wins / (entry.league.wins + entry.league.losses)) * 100;
   const winWidth = winRate * 0.6; // Scale factor for width
@@ -89,25 +139,30 @@
   </div>
 
   <!-- Rank -->
-  <div class="col-span-3 flex items-center mx-20">
+  <div class="col-span-2 flex items-center">
     <img class="mr-2 h-8 w-8" src={tierIconUrl} alt="Rank Icon" />
-    <span class=" mr-2">{entry.league.tier}</span>
-    <span class=" mr-2">{entry.league.rank}</span>
+    <span class="mr-2">{entry.league.tier}</span>
+    <span class="mr-2">{entry.league.rank}</span>
     <span class="text-gray-400">{entry.league.leaguePoints}</span>
   </div>
 
   <!-- LP Diff -->
-  <div class={`col-span-2 font-semibold text-center ${
+  <div class={`col-span-1 font-semibold text-center ${
     lpDiff > 0 ? 'text-green-500' : lpDiff < 0 ? 'text-red-500' : 'text-white'
   }`}>
     {lpDiff}
   </div>
 
-  <!-- KDA -->
+  <!-- LP Diff -->
   <div class="col-span-1 text-center">
-    <div class="flex items-center justify-center">
-      <div class="mr-2">{kda.toFixed(2)}</div>
-    </div>
+    <span class="text-green-500">{lpChange.win !== null ? `+${lpChange.win}` : '?'}</span>
+    {' / '}
+    <span class="text-red-500">{lpChange.loss !== null ? `-${lpChange.loss}` : '?'}</span>
+  </div>
+
+  <!-- KDA -->
+  <div class="col-span-2 text-center">
+    {kda.toFixed(2)}
   </div>
 
   <!-- Win Rate -->

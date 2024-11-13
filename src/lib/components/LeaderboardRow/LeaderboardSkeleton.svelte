@@ -19,20 +19,28 @@
     </div>
 
     <!-- Rank -->
-    <div class="col-span-3 flex items-center">
+    <div class="col-span-2 flex items-center justify-center">
       <div class="mr-2 h-8 w-8 rounded bg-slate-700"></div>
-      <div class="mr-2 h-5 w-16 rounded bg-slate-700"></div>
-      <div class="mr-2 h-5 w-6 rounded bg-slate-700"></div>
-      <div class="h-5 w-10 rounded bg-slate-700"></div>
+      <div class="h-5 w-24 rounded bg-slate-700"></div>
+    </div>
+
+    <!-- LP +/- -->
+    <div class="col-span-2 flex justify-center">
+      <div class="h-5 w-16 rounded bg-slate-700"></div>
     </div>
 
     <!-- LP Diff -->
-    <div class="col-span-2">
+    <div class="col-span-2 flex justify-center">
       <div class="h-5 w-8 rounded bg-slate-700"></div>
     </div>
 
+    <!-- KDA -->
+    <div class="col-span-1 flex justify-center">
+      <div class="h-5 w-12 rounded bg-slate-700"></div>
+    </div>
+
     <!-- Win Rate -->
-    <div class="col-span-3">
+    <div class="col-span-2 flex justify-center">
       <div class="flex items-center gap-1">
         <div class="h-7 w-44 rounded bg-slate-700"></div>
         <div class="ml-2 h-5 w-12 rounded bg-slate-700"></div>
