@@ -46,8 +46,25 @@
     return currentWorth - previousWorth;
   }
 
-  // Random Sample Data -53 - - 54
+  function calcKDA(matches: Match[]): number {
+    const last10Matches = matches.slice(0, 10);
+    const kda = last10Matches.reduce((acc, match) => {
+      const kills = match.kills;
+      const deaths = match.deaths;
+      const assists = match.assists;
+
+      return {
+        kills: acc.kills + kills,
+        deaths: acc.deaths + deaths,
+        assists: acc.assists + assists
+      };
+    }, { kills: 0, deaths: 0, assists: 0 });
+
+    return kda.deaths === 0 ? kda.kills + kda.assists : (kda.kills + kda.assists) / kda.deaths;
+  }
+
   const lpDiff = calcLPDiff(entry.matches);
+  const kda = calcKDA(entry.matches);
 
   const winRate = (entry.league.wins / (entry.league.wins + entry.league.losses)) * 100;
   const winWidth = winRate * 0.6; // Scale factor for width
@@ -61,7 +78,7 @@
   </div>
 
   <!-- Profile -->
-  <div class="col-span-3 flex items-center justify-center">
+  <div class="col-span-2 flex items-center">
     <img class="mr-4 h-11 w-11 rounded-full" src={iconUrl} alt="Profile Icon" />
     <div class="flex flex-col">
       <a  href={opggUrl}  target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">
@@ -72,7 +89,7 @@
   </div>
 
   <!-- Rank -->
-  <div class="col-span-3 flex items-center justify-center">
+  <div class="col-span-3 flex items-center mx-20">
     <img class="mr-2 h-8 w-8" src={tierIconUrl} alt="Rank Icon" />
     <span class=" mr-2">{entry.league.tier}</span>
     <span class=" mr-2">{entry.league.rank}</span>
@@ -80,7 +97,7 @@
   </div>
 
   <!-- LP Diff -->
-  <div class={`col-span-1 font-semibold text-center ${
+  <div class={`col-span-2 font-semibold text-center ${
     lpDiff > 0 ? 'text-green-500' : lpDiff < 0 ? 'text-red-500' : 'text-white'
   }`}>
     {lpDiff}
@@ -89,7 +106,7 @@
   <!-- KDA -->
   <div class="col-span-1 text-center">
     <div class="flex items-center justify-center">
-      <div class="mr-2">6.2</div>
+      <div class="mr-2">{kda.toFixed(2)}</div>
     </div>
   </div>
 
@@ -97,13 +114,13 @@
   <div class="col-span-3">
     <div class="flex items-center justify-center">
       <div
-        class="rounded-l bg-blue-500 px-2 py-0.3 text-sm font-semibold"
+        class="rounded-l bg-[#4B7AD8] px-2 py-0.3 text-sm font-semibold"
         style="width: {winWidth}%;"
       >
         {entry.league.wins}W
       </div>
       <div
-        class="mr-2 rounded-r bg-red-500 px-2 py-0.3 text-right text-sm font-semibold"
+        class="mr-2 rounded-r bg-[#DC5F61] px-2 py-0.3 text-right text-sm font-semibold"
         style="width: {lossWidth}%;"
       >
         {entry.league.losses}L

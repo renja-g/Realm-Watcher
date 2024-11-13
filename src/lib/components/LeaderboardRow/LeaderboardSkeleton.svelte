@@ -10,7 +10,7 @@
     </div>
 
     <!-- Profile -->
-    <div class="col-span-3 flex items-center">
+    <div class="col-span-2 flex items-center">
       <div class="mr-4 h-11 w-11 rounded-full bg-slate-700"></div>
       <div class="flex flex-col gap-1.5">
         <div class="h-5 w-24 rounded bg-slate-700"></div>
@@ -26,7 +26,7 @@
       <div class="h-5 w-10 rounded bg-slate-700"></div>
     </div>
 
-    <!-- Last 5 Games -->
+    <!-- LP Diff -->
     <div class="col-span-2">
       <div class="h-5 w-8 rounded bg-slate-700"></div>
     </div>
