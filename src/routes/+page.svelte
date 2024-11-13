@@ -41,26 +41,26 @@
   </div>
 
   <!-- Leaderboard Headers -->
-  <div class="grid grid-cols-12 border-b-2 border-gray-700 px-6 py-2 text-sm text-gray-400">
+  <div class="grid grid-cols-12 gap-8 border-b-2 border-gray-700 px-6 py-2 text-sm text-gray-400">
     <div class="col-span-1">#</div>
     <div class="col-span-2">Profile</div>
-    <div class="col-span-2">Rank</div>
-    <div class="col-span-1 text-center">
+    <div class="col-span-3">Rank</div>
+    <div class="col-span-1">
       <Tooltip text="LP gain/loss over the last 5 games." class="text-gray-400">
         LP Diff
       </Tooltip>
     </div>
-    <div class="col-span-1 text-center">
+    <div class="col-span-1">
       <Tooltip text="Last LP gain and loss" class="text-gray-400">
         LP gains
       </Tooltip>
     </div>
-    <div class="col-span-2 text-center">
+    <div class="col-span-1">
       <Tooltip text="KDA over the last 10 games." class="text-gray-400">
         KDA
       </Tooltip>
     </div>
-    <div class="col-span-2 text-center">
+    <div class="col-span-3">
       <Tooltip text="Total Win Rate for the current season." class="text-gray-400">
         Win Rate
       </Tooltip>

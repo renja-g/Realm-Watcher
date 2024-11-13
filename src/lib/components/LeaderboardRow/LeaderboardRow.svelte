@@ -121,14 +121,14 @@
   const lossWidth = (100 - winRate) * 0.6; // Scale factor for width
 </script>
 
-<div class="grid grid-cols-12 items-center border-t border-gray-700 px-6 py-4">
+<div class="grid grid-cols-12 gap-8 items-center border-t border-gray-700 px-6 py-4">
   <!-- Rank Number -->
   <div class="col-span-1 font-bold">
     {index + 1}
   </div>
 
   <!-- Profile -->
-  <div class="col-span-2 flex items-center">
+  <div class="col-span-2 -ml-8 flex items-center">
     <img class="mr-4 h-11 w-11 rounded-full" src={iconUrl} alt="Profile Icon" />
     <div class="flex flex-col">
       <a  href={opggUrl}  target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">
@@ -139,7 +139,7 @@
   </div>
 
   <!-- Rank -->
-  <div class="col-span-2 flex items-center">
+  <div class="col-span-3 flex items-center">
     <img class="mr-2 h-8 w-8" src={tierIconUrl} alt="Rank Icon" />
     <span class="mr-2">{entry.league.tier}</span>
     <span class="mr-2">{entry.league.rank}</span>
@@ -147,27 +147,27 @@
   </div>
 
   <!-- LP Diff -->
-  <div class={`col-span-1 font-semibold text-center ${
+  <div class={`col-span-1 font-semibold ${
     lpDiff > 0 ? 'text-green-500' : lpDiff < 0 ? 'text-red-500' : 'text-white'
   }`}>
     {lpDiff}
   </div>
 
   <!-- LP Diff -->
-  <div class="col-span-1 text-center">
+  <div class="col-span-1">
     <span class="text-green-500">{lpChange.win !== null ? `+${lpChange.win}` : '?'}</span>
     {' / '}
     <span class="text-red-500">{lpChange.loss !== null ? `-${lpChange.loss}` : '?'}</span>
   </div>
 
   <!-- KDA -->
-  <div class="col-span-2 text-center">
+  <div class="col-span-1">
     {kda.toFixed(2)}
   </div>
 
   <!-- Win Rate -->
   <div class="col-span-3">
-    <div class="flex items-center justify-center">
+    <div class="flex items-center">
       <div
         class="rounded-l bg-[#4B7AD8] px-2 py-0.3 text-sm font-semibold"
         style="width: {winWidth}%;"
