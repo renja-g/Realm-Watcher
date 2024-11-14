@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Realm Watcher</title> 
+</svelte:head>
+
 <script lang="ts">
   import LeaderboardRow from '$lib/components/LeaderboardRow/LeaderboardRow.svelte';
   import LeaderboardSkeleton from '$lib/components/LeaderboardRow/LeaderboardSkeleton.svelte';
