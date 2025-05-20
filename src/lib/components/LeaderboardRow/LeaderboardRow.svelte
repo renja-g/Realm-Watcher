@@ -106,6 +106,9 @@
       const currentMatch = matches[i];
       const nextMatch = matches[i + 1];
 
+      // Don't count remakes
+      if (currentMatch.remake || nextMatch.remake) continue;
+
       const lpDiff = getTotalLP(currentMatch) - getTotalLP(nextMatch);
 
       if (currentMatch.win && lastWinLP === null) {
@@ -123,9 +126,34 @@
     };
   }
 
+  function getStreak(matches: Match[]): { type: 'win' | 'loss'; amount: number } {
+    let last: boolean | undefined;
+    let amount: number = 1;
+    for (let i = 0; i < matches.length; i++) {
+      const match = matches[i];
+
+      if (match.remake) continue;
+
+      if (!last) {
+        last = match.win;
+        continue;
+      }
+
+      if (last !== match.win) break;
+      amount++;
+    }
+
+    return {
+      type: last ? 'win' : 'loss',
+      amount
+    };
+  }
+
   const lpDiff = calcLPDiff(entry.matches);
   const kda = calcKDA(entry.matches);
   const lpChange = getLastLpChange(entry.matches);
+  const streak = getStreak(entry.matches);
+  const showStreak = streak.amount >= 3;
 
   const winRate = (entry.league.wins / (entry.league.wins + entry.league.losses)) * 100;
   const winWidth = winRate * 0.6; // Scale factor for width
@@ -139,7 +167,7 @@
   </div>
 
   <!-- Profile -->
-  <div class="col-span-2 -ml-8 flex items-center">
+  <div class={`col-span-2 -ml-8 flex items-center`}>
     <img
       class={`mr-4 h-11 w-11 rounded-full ${entry.league.inactive ? 'grayscale' : ''}`}
       src={iconUrl}
@@ -156,6 +184,17 @@
       </a>
       <span class="text-sm text-gray-400">#{entry.summoner.tagLine}</span>
     </div>
+    {#if showStreak}
+      <div class={`flex items-center gap-2 rounded-md px-2 py-1 mx-4 text-sm ${streak.type === "win" ? "bg-orange-500" : "bg-blue-600 brightness-75"}`}>
+        {streak.amount}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class={`w-[0.875rem] fill-white`}>
+          <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+          <path
+            d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-4.5-9-16-9.6-22.5-2l-25.2 29.3c-6.6 7.6-18.5 7.4-24.7-.5c-16.5-21-46-58.5-62.8-79.8c-6.3-8-18.3-8.1-24.7-.1c-33.8 42.5-50.8 69.3-50.8 99.4C112 375.4 162.6 416 225.7 416z"
+          />
+        </svg>
+      </div>
+    {/if}
   </div>
 
   <!-- Rank -->
@@ -167,13 +206,13 @@
     <span class={`mr-2 ${entry.league.inactive ? 'italic text-gray-300' : ''}`}
       >{entry.league.rank}</span
     >
-    <span class="text-gray-400">{entry.league.leaguePoints} LP</span>
+    <span class="text-gray-400 text-sm">{entry.league.leaguePoints} LP</span>
   </div>
 
   <!-- LP Diff -->
   <div
     class={`col-span-1 font-semibold ${
-      lpDiff > 0 ? 'text-green-500' : lpDiff < 0 ? 'text-red-500' : 'text-white'
+      lpDiff > 0 ? 'text-win' : lpDiff < 0 ? 'text-loss' : 'text-white'
     }`}
   >
     {lpDiff}
@@ -181,9 +220,9 @@
 
   <!-- LP Diff -->
   <div class="col-span-1">
-    <span class="text-green-500">{lpChange.win !== null ? `+${lpChange.win}` : '?'}</span>
+    <span class="text-win">{lpChange.win !== null ? `+${lpChange.win}` : '+?'}</span>
     {' / '}
-    <span class="text-red-500">{lpChange.loss !== null ? `-${lpChange.loss}` : '?'}</span>
+    <span class="text-loss">{lpChange.loss !== null ? `-${lpChange.loss}` : '-?'}</span>
   </div>
 
   <!-- KDA -->
@@ -194,14 +233,11 @@
   <!-- Win Rate -->
   <div class="col-span-3">
     <div class="flex items-center">
-      <div
-        class="py-0.3 rounded-l bg-[#4B7AD8] px-2 text-sm font-semibold"
-        style="width: {winWidth}%;"
-      >
+      <div class="py-0.3 bg-win rounded-l px-2 text-sm font-semibold" style="width: {winWidth}%;">
         {entry.league.wins}W
       </div>
       <div
-        class="py-0.3 mr-2 rounded-r bg-[#DC5F61] px-2 text-right text-sm font-semibold"
+        class="py-0.3 bg-loss mr-2 rounded-r px-2 text-right text-sm font-semibold"
         style="width: {lossWidth}%;"
       >
         {entry.league.losses}L

@@ -106,7 +106,9 @@ export interface Match {
     _id: string;
     matchId: string;
     gameEndTimestamp: number;
-    championName: string;
+    // championName: string;
+    championId: number;
+    remake: boolean;
     win: boolean;
     kills: number;
     deaths: number;
