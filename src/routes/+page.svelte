@@ -47,7 +47,7 @@
   <!-- Leaderboard Headers -->
   <div class="grid grid-cols-12 gap-8 border-b-2 border-gray-700 px-6 py-2 text-sm text-gray-400">
     <div class="col-span-1">#</div>
-    <div class="col-span-2">Profile</div>
+    <div class="col-span-2 -ml-8">Profile</div>
     <div class="col-span-3">Rank</div>
     <div class="col-span-1">
       <Tooltip text="LP gain/loss over the last 5 games." class="text-gray-400">
