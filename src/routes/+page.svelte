@@ -36,7 +36,7 @@
           <div class="absolute bottom-0 left-0 w-full">
             <div class="relative h-0.5 bg-blue-600">
               <div class="absolute inset-0 bg-blue-600 blur-sm"></div>
-              <div class="bg-blue-5 00 absolute inset-0 opacity-50 blur-md"></div>
+              <div class="bg-blue-500 absolute inset-0 opacity-50 blur-md"></div>
             </div>
           </div>
         {/if}

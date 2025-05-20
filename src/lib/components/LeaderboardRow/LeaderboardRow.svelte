@@ -134,7 +134,7 @@
 
       if (match.remake) continue;
 
-      if (!last) {
+      if (last === undefined) {
         last = match.win;
         continue;
       }
