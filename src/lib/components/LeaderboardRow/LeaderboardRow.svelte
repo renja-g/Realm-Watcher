@@ -114,7 +114,7 @@
 
       if (currentMatch.win && lastWinLP === null) {
         lastWinLP = lpDiff;
-      } else if (!currentMatch.win && lastLossLP === null) {
+      } else if (!currentMatch.win && lastLossLP === null && currentMatch.league.leaguePoints !== 0) {
         lastLossLP = -lpDiff;
       }
 
