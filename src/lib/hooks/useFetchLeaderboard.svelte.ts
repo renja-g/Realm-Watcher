@@ -1,4 +1,5 @@
 import type { LeaderboardEntry, queueType } from '$lib/types/types';
+import { PUBLIC_BACKEND_URL } from '$env/static/public';
 
 
 class LeaderboardResponse {
@@ -13,7 +14,7 @@ export default function useFetchLeaderboard(queueType: queueType) {
   async function fetchData() {
     resp.isLoading = true;
     try {
-      const response = await fetch(`https://rw.renja.dev/leaderboard?queue_type=${queueType}`);
+      const response = await fetch(`${PUBLIC_BACKEND_URL}/leaderboard?queue_type=${queueType}`);
       resp.entries = await response.json() as LeaderboardEntry[];
       resp.error = undefined;
     } catch (err) {
