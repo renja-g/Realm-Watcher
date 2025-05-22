@@ -4,6 +4,8 @@
   import useFetchLeaderboard from '$lib/hooks/useFetchLeaderboard.svelte';
   import type { queueType } from '$lib/types/types';
   import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
+  import { getOldLeaderboard } from '$lib/utils/getOldLeaderboard';
+  import { PUBLIC_COMPARISON_DAYS } from '$env/static/public';
 
   const tabs: { id: queueType; label: string }[] = [
     { id: 'RANKED_SOLO_5x5', label: 'RANKED SOLO/DUO' },
@@ -13,6 +15,7 @@
   let activeTab: queueType = $state('RANKED_SOLO_5x5');
 
   let entries = $derived(useFetchLeaderboard(activeTab));
+  const oldLeaderboard = $derived(getOldLeaderboard(entries));
 </script>
 
 <svelte:head>
@@ -36,7 +39,7 @@
           <div class="absolute bottom-0 left-0 w-full">
             <div class="relative h-0.5 bg-blue-600">
               <div class="absolute inset-0 bg-blue-600 blur-sm"></div>
-              <div class="bg-blue-500 absolute inset-0 opacity-50 blur-md"></div>
+              <div class="absolute inset-0 bg-blue-500 opacity-50 blur-md"></div>
             </div>
           </div>
         {/if}
@@ -46,7 +49,9 @@
 
   <!-- Leaderboard Headers -->
   <div class="grid grid-cols-12 gap-8 border-b-2 border-gray-700 px-6 py-2 text-sm text-gray-400">
-    <div class="col-span-1">#</div>
+    <div class="col-span-1">
+       <Tooltip text={`Current rank of the players between all players and the leaderboard movements in the last ${PUBLIC_COMPARISON_DAYS} days`} class="text-gray-400">#</Tooltip>
+    </div>
     <div class="col-span-2 -ml-8">Profile</div>
     <div class="col-span-3">Rank</div>
     <div class="col-span-1">
@@ -77,7 +82,7 @@
       <LeaderboardSkeleton rows={10} />
     {:else}
       {#each entries.entries as entry, index}
-        <LeaderboardRow {index} {entry} />
+        <LeaderboardRow {index} {entry} {oldLeaderboard} />
       {/each}
     {/if}
   </div>
