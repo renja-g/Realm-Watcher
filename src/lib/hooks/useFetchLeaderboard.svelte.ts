@@ -2,7 +2,7 @@ import type { LeaderboardEntry, queueType } from '$lib/types/types';
 import { PUBLIC_BACKEND_URL } from '$env/static/public';
 
 
-class LeaderboardResponse {
+export class LeaderboardResponse {
     entries: LeaderboardEntry[] = $state([]);
     error: unknown = $state(undefined);
     isLoading: boolean = $state(true);
