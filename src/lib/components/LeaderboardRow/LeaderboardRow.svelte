@@ -144,7 +144,7 @@
   const lossWidth = (100 - winRate) * 0.6; // Scale factor for width
 </script>
 
-<div class="grid grid-cols-12 items-center gap-8 border-t border-gray-700 px-6 py-4">
+<div class="grid grid-cols-12 items-center gap-8 border-t border-gray-700 px-6 py-4 hover:bg-slate-700">
   <!-- Rank Number -->
   <div class="col-span-1 flex items-center gap-3 font-bold">
     <span>{index + 1}</span>
