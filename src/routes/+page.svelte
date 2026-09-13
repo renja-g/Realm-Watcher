@@ -79,7 +79,7 @@
         >
       </div>
     {:else if entries.isLoading}
-      <LeaderboardSkeleton rows={10} />
+      <LeaderboardSkeleton rows={15} />
     {:else}
       {#each entries.entries as entry, index}
         <LeaderboardRow {index} {entry} {oldLeaderboard} />
